@@ -38,7 +38,7 @@ describe('Attacker contract', function () {
 
       expect(attacker.proposedPrices).to.equal('')
     })
-
-    // write more tests, check more params in expect values, add negative tests
   })
+
+  // write more tests, check more params in expect values, add negative tests
 })
