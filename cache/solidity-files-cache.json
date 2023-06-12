@@ -25,9 +25,6 @@
                 "ast"
               ]
             }
-          },
-          "metadata": {
-            "useLiteralContent": false
           }
         }
       },
@@ -40,8 +37,8 @@
       ]
     },
     "/Users/ruslanvanin/Projects/RedDuckMilestones/milestone1/contracts/VotableERC20.sol": {
-      "lastModificationDate": 1686576594475,
-      "contentHash": "b3eaa96d98e9ec0273e6404867598f4c",
+      "lastModificationDate": 1686577074707,
+      "contentHash": "5dd7d207cc9a8eb66ac5c84964498813",
       "sourceName": "contracts/VotableERC20.sol",
       "solcConfig": {
         "version": "0.8.4",
@@ -63,9 +60,6 @@
                 "ast"
               ]
             }
-          },
-          "metadata": {
-            "useLiteralContent": false
           }
         }
       },
@@ -105,9 +99,6 @@
                 "ast"
               ]
             }
-          },
-          "metadata": {
-            "useLiteralContent": false
           }
         }
       },
@@ -143,9 +134,6 @@
                 "ast"
               ]
             }
-          },
-          "metadata": {
-            "useLiteralContent": false
           }
         }
       },
@@ -156,40 +144,6 @@
       "artifacts": [
         "console"
       ]
-    },
-    "/Users/ruslanvanin/Projects/RedDuckMilestones/milestone1/contracts/ArrayLib.sol": {
-      "lastModificationDate": 1686559305002,
-      "contentHash": "c7696b30ad83ce3757a22298c39c1414",
-      "sourceName": "contracts/ArrayLib.sol",
-      "solcConfig": {
-        "version": "0.8.4",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          },
-          "metadata": {
-            "useLiteralContent": false
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [],
-      "artifacts": []
     },
     "/Users/ruslanvanin/Projects/RedDuckMilestones/milestone1/contracts/old.sol": {
       "lastModificationDate": 1686316197994,
@@ -215,9 +169,6 @@
                 "ast"
               ]
             }
-          },
-          "metadata": {
-            "useLiteralContent": false
           }
         }
       },
