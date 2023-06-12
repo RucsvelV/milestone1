@@ -1,0 +1,2583 @@
+{
+ "contracts/VotableERC20.sol": {
+  "42": [
+   {
+    "title": "Should allow to set new fee for owner",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to set new fee if you are not the owner",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to set fee of whole sum",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "43": [
+   {
+    "title": "Should allow to set new fee for owner",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to set fee of whole sum",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "47": [
+   {
+    "title": "Should set the right properties and owner",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to buy tokens with fee",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should sell tokens correctly",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to sell more tokens than you have",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to buy if value of ether send is zero",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to transfer tokens when you already have them",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to transfer tokens to zero balance",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to transferFrom your tokens when you have approved from owner",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to transferFrom your tokens to zero address",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to set new fee for owner",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to set new fee if you are not the owner",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to set fee of whole sum",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow start Vote to anyone who has minimum tokens required",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to start new Vote when current vote is not ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to start vote if address do not have enough tokens",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to add vote price if address do not have enough tokens for minimal add vote requirence",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to vote for some price if address have enough tokens",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to vote for some price if vote is not started",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to vote twice",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to end vote if time have been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to end vote if time have not been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should remove sell anount of tokens after sell of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should add buy anount of tokens after buy of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should decrease transfer anount of tokens after transfer of voter",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "48": [
+   {
+    "title": "Should set the right properties and owner",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to buy tokens with fee",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should sell tokens correctly",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to sell more tokens than you have",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to buy if value of ether send is zero",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to transfer tokens when you already have them",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to transfer tokens to zero balance",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to transferFrom your tokens when you have approved from owner",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to transferFrom your tokens to zero address",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to set new fee for owner",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to set new fee if you are not the owner",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to set fee of whole sum",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow start Vote to anyone who has minimum tokens required",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to start new Vote when current vote is not ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to start vote if address do not have enough tokens",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to add vote price if address do not have enough tokens for minimal add vote requirence",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to vote for some price if address have enough tokens",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to vote for some price if vote is not started",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to vote twice",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to end vote if time have been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to end vote if time have not been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should remove sell anount of tokens after sell of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should add buy anount of tokens after buy of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should decrease transfer anount of tokens after transfer of voter",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "49": [
+   {
+    "title": "Should set the right properties and owner",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to buy tokens with fee",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should sell tokens correctly",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to sell more tokens than you have",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to buy if value of ether send is zero",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to transfer tokens when you already have them",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to transfer tokens to zero balance",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to transferFrom your tokens when you have approved from owner",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to transferFrom your tokens to zero address",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to set new fee for owner",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to set new fee if you are not the owner",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to set fee of whole sum",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow start Vote to anyone who has minimum tokens required",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to start new Vote when current vote is not ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to start vote if address do not have enough tokens",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to add vote price if address do not have enough tokens for minimal add vote requirence",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to vote for some price if address have enough tokens",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to vote for some price if vote is not started",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to vote twice",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to end vote if time have been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to end vote if time have not been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should remove sell anount of tokens after sell of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should add buy anount of tokens after buy of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should decrease transfer anount of tokens after transfer of voter",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "50": [
+   {
+    "title": "Should set the right properties and owner",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to buy tokens with fee",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should sell tokens correctly",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to sell more tokens than you have",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to buy if value of ether send is zero",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to transfer tokens when you already have them",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to transfer tokens to zero balance",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to transferFrom your tokens when you have approved from owner",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to transferFrom your tokens to zero address",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to set new fee for owner",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to set new fee if you are not the owner",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to set fee of whole sum",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow start Vote to anyone who has minimum tokens required",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to start new Vote when current vote is not ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to start vote if address do not have enough tokens",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to add vote price if address do not have enough tokens for minimal add vote requirence",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to vote for some price if address have enough tokens",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to vote for some price if vote is not started",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to vote twice",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to end vote if time have been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to end vote if time have not been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should remove sell anount of tokens after sell of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should add buy anount of tokens after buy of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should decrease transfer anount of tokens after transfer of voter",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "51": [
+   {
+    "title": "Should set the right properties and owner",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to buy tokens with fee",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should sell tokens correctly",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to sell more tokens than you have",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to buy if value of ether send is zero",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to transfer tokens when you already have them",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to transfer tokens to zero balance",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to transferFrom your tokens when you have approved from owner",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to transferFrom your tokens to zero address",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to set new fee for owner",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to set new fee if you are not the owner",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to set fee of whole sum",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow start Vote to anyone who has minimum tokens required",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to start new Vote when current vote is not ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to start vote if address do not have enough tokens",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to add vote price if address do not have enough tokens for minimal add vote requirence",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to vote for some price if address have enough tokens",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to vote for some price if vote is not started",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to vote twice",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to end vote if time have been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to end vote if time have not been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should remove sell anount of tokens after sell of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should add buy anount of tokens after buy of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should decrease transfer anount of tokens after transfer of voter",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "52": [
+   {
+    "title": "Should set the right properties and owner",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to buy tokens with fee",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should sell tokens correctly",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to sell more tokens than you have",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to buy if value of ether send is zero",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to transfer tokens when you already have them",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to transfer tokens to zero balance",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to transferFrom your tokens when you have approved from owner",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to transferFrom your tokens to zero address",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to set new fee for owner",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to set new fee if you are not the owner",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to set fee of whole sum",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow start Vote to anyone who has minimum tokens required",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to start new Vote when current vote is not ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to start vote if address do not have enough tokens",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to add vote price if address do not have enough tokens for minimal add vote requirence",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to vote for some price if address have enough tokens",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to vote for some price if vote is not started",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to vote twice",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to end vote if time have been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to end vote if time have not been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should remove sell anount of tokens after sell of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should add buy anount of tokens after buy of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should decrease transfer anount of tokens after transfer of voter",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "53": [
+   {
+    "title": "Should set the right properties and owner",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to buy tokens with fee",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should sell tokens correctly",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to sell more tokens than you have",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to buy if value of ether send is zero",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to transfer tokens when you already have them",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to transfer tokens to zero balance",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to transferFrom your tokens when you have approved from owner",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to transferFrom your tokens to zero address",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to set new fee for owner",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to set new fee if you are not the owner",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to set fee of whole sum",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow start Vote to anyone who has minimum tokens required",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to start new Vote when current vote is not ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to start vote if address do not have enough tokens",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to add vote price if address do not have enough tokens for minimal add vote requirence",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to vote for some price if address have enough tokens",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to vote for some price if vote is not started",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to vote twice",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to end vote if time have been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to end vote if time have not been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should remove sell anount of tokens after sell of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should add buy anount of tokens after buy of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should decrease transfer anount of tokens after transfer of voter",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "57": [
+   {
+    "title": "Should allow to set new fee for owner",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to set fee of whole sum",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "58": [
+   {
+    "title": "Should allow to set new fee for owner",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "62": [
+   {
+    "title": "Should allow to buy tokens with fee",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should sell tokens correctly",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to buy if value of ether send is zero",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to transfer tokens when you already have them",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to transfer tokens to zero balance",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to transferFrom your tokens when you have approved from owner",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to transferFrom your tokens to zero address",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow start Vote to anyone who has minimum tokens required",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to start new Vote when current vote is not ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to start vote if address do not have enough tokens",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to add vote price if address do not have enough tokens for minimal add vote requirence",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to vote for some price if address have enough tokens",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to vote for some price if vote is not started",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to vote twice",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to end vote if time have been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to end vote if time have not been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should remove sell anount of tokens after sell of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should add buy anount of tokens after buy of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should decrease transfer anount of tokens after transfer of voter",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "64": [
+   {
+    "title": "Should allow to buy tokens with fee",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should sell tokens correctly",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to transfer tokens when you already have them",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to transfer tokens to zero balance",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to transferFrom your tokens when you have approved from owner",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to transferFrom your tokens to zero address",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow start Vote to anyone who has minimum tokens required",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to start new Vote when current vote is not ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to start vote if address do not have enough tokens",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to add vote price if address do not have enough tokens for minimal add vote requirence",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to vote for some price if address have enough tokens",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to vote for some price if vote is not started",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to vote twice",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to end vote if time have been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to end vote if time have not been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should remove sell anount of tokens after sell of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should add buy anount of tokens after buy of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should decrease transfer anount of tokens after transfer of voter",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "65": [
+   {
+    "title": "Should allow to buy tokens with fee",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should sell tokens correctly",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to transfer tokens when you already have them",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to transfer tokens to zero balance",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to transferFrom your tokens when you have approved from owner",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to transferFrom your tokens to zero address",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow start Vote to anyone who has minimum tokens required",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to start new Vote when current vote is not ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to start vote if address do not have enough tokens",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to add vote price if address do not have enough tokens for minimal add vote requirence",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to vote for some price if address have enough tokens",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to vote for some price if vote is not started",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to vote twice",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to end vote if time have been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to end vote if time have not been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should remove sell anount of tokens after sell of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should add buy anount of tokens after buy of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should decrease transfer anount of tokens after transfer of voter",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "66": [
+   {
+    "title": "Should allow to buy tokens with fee",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should sell tokens correctly",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to transfer tokens when you already have them",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to transfer tokens to zero balance",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to transferFrom your tokens when you have approved from owner",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to transferFrom your tokens to zero address",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow start Vote to anyone who has minimum tokens required",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to start new Vote when current vote is not ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to start vote if address do not have enough tokens",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to add vote price if address do not have enough tokens for minimal add vote requirence",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to vote for some price if address have enough tokens",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to vote for some price if vote is not started",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to vote twice",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to end vote if time have been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to end vote if time have not been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should remove sell anount of tokens after sell of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should add buy anount of tokens after buy of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should decrease transfer anount of tokens after transfer of voter",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "68": [
+   {
+    "title": "Should allow to buy tokens with fee",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should sell tokens correctly",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to transfer tokens when you already have them",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to transfer tokens to zero balance",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to transferFrom your tokens when you have approved from owner",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to transferFrom your tokens to zero address",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow start Vote to anyone who has minimum tokens required",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to start new Vote when current vote is not ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to start vote if address do not have enough tokens",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to add vote price if address do not have enough tokens for minimal add vote requirence",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to vote for some price if address have enough tokens",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to vote for some price if vote is not started",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to vote twice",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to end vote if time have been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to end vote if time have not been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should remove sell anount of tokens after sell of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should add buy anount of tokens after buy of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should decrease transfer anount of tokens after transfer of voter",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "70": [
+   {
+    "title": "Should allow to buy tokens with fee",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should sell tokens correctly",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to transfer tokens when you already have them",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to transfer tokens to zero balance",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to transferFrom your tokens when you have approved from owner",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to transferFrom your tokens to zero address",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow start Vote to anyone who has minimum tokens required",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to start new Vote when current vote is not ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to start vote if address do not have enough tokens",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to add vote price if address do not have enough tokens for minimal add vote requirence",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to vote for some price if address have enough tokens",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to vote for some price if vote is not started",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to vote twice",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to end vote if time have been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to end vote if time have not been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should remove sell anount of tokens after sell of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should add buy anount of tokens after buy of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should decrease transfer anount of tokens after transfer of voter",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "72": [
+   {
+    "title": "Should allow to buy tokens with fee",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should sell tokens correctly",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to transfer tokens when you already have them",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to transfer tokens to zero balance",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to transferFrom your tokens when you have approved from owner",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to transferFrom your tokens to zero address",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow start Vote to anyone who has minimum tokens required",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to start new Vote when current vote is not ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to start vote if address do not have enough tokens",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to add vote price if address do not have enough tokens for minimal add vote requirence",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to vote for some price if address have enough tokens",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to vote for some price if vote is not started",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to vote twice",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to end vote if time have been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to end vote if time have not been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should remove sell anount of tokens after sell of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should add buy anount of tokens after buy of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should decrease transfer anount of tokens after transfer of voter",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "73": [
+   {
+    "title": "Should add buy anount of tokens after buy of voter",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "76": [
+   {
+    "title": "Should allow to buy tokens with fee",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should sell tokens correctly",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to transfer tokens when you already have them",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to transfer tokens to zero balance",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to transferFrom your tokens when you have approved from owner",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to transferFrom your tokens to zero address",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow start Vote to anyone who has minimum tokens required",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to start new Vote when current vote is not ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to start vote if address do not have enough tokens",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to add vote price if address do not have enough tokens for minimal add vote requirence",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to vote for some price if address have enough tokens",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to vote for some price if vote is not started",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to vote twice",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to end vote if time have been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to end vote if time have not been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should remove sell anount of tokens after sell of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should add buy anount of tokens after buy of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should decrease transfer anount of tokens after transfer of voter",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "80": [
+   {
+    "title": "Should sell tokens correctly",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to sell more tokens than you have",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should remove sell anount of tokens after sell of voter",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "82": [
+   {
+    "title": "Should sell tokens correctly",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should remove sell anount of tokens after sell of voter",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "83": [
+   {
+    "title": "Should sell tokens correctly",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should remove sell anount of tokens after sell of voter",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "84": [
+   {
+    "title": "Should sell tokens correctly",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should remove sell anount of tokens after sell of voter",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "86": [
+   {
+    "title": "Should sell tokens correctly",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should remove sell anount of tokens after sell of voter",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "88": [
+   {
+    "title": "Should sell tokens correctly",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should remove sell anount of tokens after sell of voter",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "90": [
+   {
+    "title": "Should sell tokens correctly",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should remove sell anount of tokens after sell of voter",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "92": [
+   {
+    "title": "Should sell tokens correctly",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should remove sell anount of tokens after sell of voter",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "94": [
+   {
+    "title": "Should sell tokens correctly",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should remove sell anount of tokens after sell of voter",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "98": [
+   {
+    "title": "Should allow start Vote to anyone who has minimum tokens required",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to start new Vote when current vote is not ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to start vote if address do not have enough tokens",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to add vote price if address do not have enough tokens for minimal add vote requirence",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to vote for some price if address have enough tokens",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to vote twice",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to end vote if time have been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to end vote if time have not been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should remove sell anount of tokens after sell of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should add buy anount of tokens after buy of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should decrease transfer anount of tokens after transfer of voter",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "99": [
+   {
+    "title": "Should allow start Vote to anyone who has minimum tokens required",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to start new Vote when current vote is not ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to start vote if address do not have enough tokens",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to add vote price if address do not have enough tokens for minimal add vote requirence",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to vote for some price if address have enough tokens",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to vote twice",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to end vote if time have been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to end vote if time have not been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should remove sell anount of tokens after sell of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should add buy anount of tokens after buy of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should decrease transfer anount of tokens after transfer of voter",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "100": [
+   {
+    "title": "Should allow start Vote to anyone who has minimum tokens required",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to start new Vote when current vote is not ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to add vote price if address do not have enough tokens for minimal add vote requirence",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to vote for some price if address have enough tokens",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to vote twice",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to end vote if time have been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to end vote if time have not been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should remove sell anount of tokens after sell of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should add buy anount of tokens after buy of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should decrease transfer anount of tokens after transfer of voter",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "101": [
+   {
+    "title": "Should allow start Vote to anyone who has minimum tokens required",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to start new Vote when current vote is not ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to add vote price if address do not have enough tokens for minimal add vote requirence",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to vote for some price if address have enough tokens",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to vote twice",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to end vote if time have been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to end vote if time have not been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should remove sell anount of tokens after sell of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should add buy anount of tokens after buy of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should decrease transfer anount of tokens after transfer of voter",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "102": [
+   {
+    "title": "Should allow start Vote to anyone who has minimum tokens required",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to start new Vote when current vote is not ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to add vote price if address do not have enough tokens for minimal add vote requirence",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to vote for some price if address have enough tokens",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to vote twice",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to end vote if time have been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to end vote if time have not been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should remove sell anount of tokens after sell of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should add buy anount of tokens after buy of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should decrease transfer anount of tokens after transfer of voter",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "103": [
+   {
+    "title": "Should allow start Vote to anyone who has minimum tokens required",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to start new Vote when current vote is not ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to add vote price if address do not have enough tokens for minimal add vote requirence",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to vote for some price if address have enough tokens",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to vote twice",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to end vote if time have been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to end vote if time have not been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should remove sell anount of tokens after sell of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should add buy anount of tokens after buy of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should decrease transfer anount of tokens after transfer of voter",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "109": [
+   {
+    "title": "Should not allow to add vote price if address do not have enough tokens for minimal add vote requirence",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to vote for some price if address have enough tokens",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to vote for some price if vote is not started",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to vote twice",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to end vote if time have been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to end vote if time have not been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should remove sell anount of tokens after sell of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should add buy anount of tokens after buy of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should decrease transfer anount of tokens after transfer of voter",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "110": [
+   {
+    "title": "Should not allow to add vote price if address do not have enough tokens for minimal add vote requirence",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to vote for some price if address have enough tokens",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to vote twice",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to end vote if time have been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to end vote if time have not been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should remove sell anount of tokens after sell of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should add buy anount of tokens after buy of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should decrease transfer anount of tokens after transfer of voter",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "111": [
+   {
+    "title": "Should not allow to add vote price if address do not have enough tokens for minimal add vote requirence",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to vote for some price if address have enough tokens",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to vote twice",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to end vote if time have been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to end vote if time have not been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should remove sell anount of tokens after sell of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should add buy anount of tokens after buy of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should decrease transfer anount of tokens after transfer of voter",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "112": [
+   {
+    "title": "Should allow to vote for some price if address have enough tokens",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to vote twice",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to end vote if time have been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to end vote if time have not been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should remove sell anount of tokens after sell of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should add buy anount of tokens after buy of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should decrease transfer anount of tokens after transfer of voter",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "114": [
+   {
+    "title": "Should allow to vote for some price if address have enough tokens",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to vote twice",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to end vote if time have been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to end vote if time have not been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should remove sell anount of tokens after sell of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should add buy anount of tokens after buy of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should decrease transfer anount of tokens after transfer of voter",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "115": [
+   {
+    "title": "Should allow to vote for some price if address have enough tokens",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to vote twice",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to end vote if time have been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to end vote if time have not been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should remove sell anount of tokens after sell of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should add buy anount of tokens after buy of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should decrease transfer anount of tokens after transfer of voter",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "116": [
+   {
+    "title": "Should allow to vote for some price if address have enough tokens",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to vote twice",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to end vote if time have been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to end vote if time have not been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should remove sell anount of tokens after sell of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should add buy anount of tokens after buy of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should decrease transfer anount of tokens after transfer of voter",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "118": [
+   {
+    "title": "Should allow to vote for some price if address have enough tokens",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to vote twice",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to end vote if time have been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to end vote if time have not been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should remove sell anount of tokens after sell of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should add buy anount of tokens after buy of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should decrease transfer anount of tokens after transfer of voter",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "122": [
+   {
+    "title": "Should allow to vote for some price if address have enough tokens",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to vote twice",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "123": [
+   {
+    "title": "Should allow to vote for some price if address have enough tokens",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to vote twice",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "124": [
+   {
+    "title": "Should allow to vote for some price if address have enough tokens",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to vote twice",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "125": [
+   {
+    "title": "Should allow to vote for some price if address have enough tokens",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to vote twice",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "127": [
+   {
+    "title": "Should allow to vote for some price if address have enough tokens",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "128": [
+   {
+    "title": "Should allow to vote for some price if address have enough tokens",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "130": [
+   {
+    "title": "Should allow to vote for some price if address have enough tokens",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "135": [
+   {
+    "title": "Should allow to end vote if time have been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to end vote if time have not been ended",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "137": [
+   {
+    "title": "Should allow to end vote if time have been ended",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "138": [
+   {
+    "title": "Should allow to end vote if time have been ended",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "139": [
+   {
+    "title": "Should allow to end vote if time have been ended",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "141": [
+   {
+    "title": "Should allow to end vote if time have been ended",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "142": [
+   {
+    "title": "Should allow to end vote if time have been ended",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "144": [
+   {
+    "title": "Should allow to end vote if time have been ended",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "145": [
+   {
+    "title": "Should allow to end vote if time have been ended",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "146": [
+   {
+    "title": "Should allow to end vote if time have been ended",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "151": [
+   {
+    "title": "Should allow to end vote if time have been ended",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "154": [
+   {
+    "title": "Should allow to end vote if time have been ended",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "155": [
+   {
+    "title": "Should allow to end vote if time have been ended",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "156": [
+   {
+    "title": "Should allow to end vote if time have been ended",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "157": [
+   {
+    "title": "Should allow to end vote if time have been ended",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "162": [],
+  "166": [
+   {
+    "title": "Should allow to vote for some price if address have enough tokens",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should remove sell anount of tokens after sell of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should add buy anount of tokens after buy of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should decrease transfer anount of tokens after transfer of voter",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "170": [
+   {
+    "title": "Should allow to buy tokens with fee",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should sell tokens correctly",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to sell more tokens than you have",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to buy if value of ether send is zero",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to transfer tokens when you already have them",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to transferFrom your tokens when you have approved from owner",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to vote for some price if address have enough tokens",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to vote twice",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to end vote if time have been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to end vote if time have not been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should remove sell anount of tokens after sell of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should add buy anount of tokens after buy of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should decrease transfer anount of tokens after transfer of voter",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "174": [
+   {
+    "title": "Should allow to transfer tokens when you already have them",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to transfer tokens to zero balance",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should decrease transfer anount of tokens after transfer of voter",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "175": [
+   {
+    "title": "Should allow to transfer tokens when you already have them",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should decrease transfer anount of tokens after transfer of voter",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "179": [
+   {
+    "title": "Should allow to transferFrom your tokens when you have approved from owner",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to transferFrom your tokens to zero address",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "180": [
+   {
+    "title": "Should allow to transferFrom your tokens when you have approved from owner",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to transferFrom your tokens to zero address",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "181": [
+   {
+    "title": "Should allow to transferFrom your tokens when you have approved from owner",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to transferFrom your tokens to zero address",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "182": [
+   {
+    "title": "Should allow to transferFrom your tokens when you have approved from owner",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "183": [
+   {
+    "title": "Should allow to transferFrom your tokens when you have approved from owner",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "187": [],
+  "191": [
+   {
+    "title": "Should allow to transferFrom your tokens when you have approved from owner",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to transferFrom your tokens to zero address",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "193": [
+   {
+    "title": "Should allow to transferFrom your tokens when you have approved from owner",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to transferFrom your tokens to zero address",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "194": [
+   {
+    "title": "Should allow to transferFrom your tokens when you have approved from owner",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to transferFrom your tokens to zero address",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "198": [
+   {
+    "title": "Should allow to transfer tokens when you already have them",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to transfer tokens to zero balance",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to transferFrom your tokens when you have approved from owner",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to transferFrom your tokens to zero address",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should decrease transfer anount of tokens after transfer of voter",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "199": [
+   {
+    "title": "Should allow to transfer tokens when you already have them",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to transfer tokens to zero balance",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to transferFrom your tokens when you have approved from owner",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to transferFrom your tokens to zero address",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should decrease transfer anount of tokens after transfer of voter",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "200": [
+   {
+    "title": "Should allow to transfer tokens when you already have them",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to transferFrom your tokens when you have approved from owner",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should decrease transfer anount of tokens after transfer of voter",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "202": [
+   {
+    "title": "Should allow to transfer tokens when you already have them",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to transferFrom your tokens when you have approved from owner",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should decrease transfer anount of tokens after transfer of voter",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "203": [
+   {
+    "title": "Should allow to transfer tokens when you already have them",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to transferFrom your tokens when you have approved from owner",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should decrease transfer anount of tokens after transfer of voter",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "205": [
+   {
+    "title": "Should allow to transfer tokens when you already have them",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to transferFrom your tokens when you have approved from owner",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should decrease transfer anount of tokens after transfer of voter",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "207": [
+   {
+    "title": "Should allow to transfer tokens when you already have them",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to transferFrom your tokens when you have approved from owner",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should decrease transfer anount of tokens after transfer of voter",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "211": [
+   {
+    "title": "Should sell tokens correctly",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to transfer tokens when you already have them",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to transferFrom your tokens when you have approved from owner",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should remove sell anount of tokens after sell of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should decrease transfer anount of tokens after transfer of voter",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "212": [
+   {
+    "title": "Should remove sell anount of tokens after sell of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should decrease transfer anount of tokens after transfer of voter",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "213": [],
+  "215": [
+   {
+    "title": "Should remove sell anount of tokens after sell of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should decrease transfer anount of tokens after transfer of voter",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "221": [
+   {
+    "title": "Should allow to buy tokens with fee",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should sell tokens correctly",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to transfer tokens when you already have them",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to transfer tokens to zero balance",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to transferFrom your tokens when you have approved from owner",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to transferFrom your tokens to zero address",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow start Vote to anyone who has minimum tokens required",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to start new Vote when current vote is not ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to start vote if address do not have enough tokens",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to add vote price if address do not have enough tokens for minimal add vote requirence",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to vote for some price if address have enough tokens",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to vote for some price if vote is not started",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to vote twice",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to end vote if time have been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to end vote if time have not been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should remove sell anount of tokens after sell of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should add buy anount of tokens after buy of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should decrease transfer anount of tokens after transfer of voter",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "222": [
+   {
+    "title": "Should allow to buy tokens with fee",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should sell tokens correctly",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to transfer tokens when you already have them",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to transfer tokens to zero balance",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to transferFrom your tokens when you have approved from owner",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to transferFrom your tokens to zero address",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow start Vote to anyone who has minimum tokens required",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to start new Vote when current vote is not ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to start vote if address do not have enough tokens",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to add vote price if address do not have enough tokens for minimal add vote requirence",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to vote for some price if address have enough tokens",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to vote for some price if vote is not started",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to vote twice",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should allow to end vote if time have been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should not allow to end vote if time have not been ended",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should remove sell anount of tokens after sell of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should add buy anount of tokens after buy of voter",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should decrease transfer anount of tokens after transfer of voter",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "226": [
+   {
+    "title": "Should sell tokens correctly",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should remove sell anount of tokens after sell of voter",
+    "file": "test/VotableERC20.js"
+   }
+  ],
+  "227": [
+   {
+    "title": "Should sell tokens correctly",
+    "file": "test/VotableERC20.js"
+   },
+   {
+    "title": "Should remove sell anount of tokens after sell of voter",
+    "file": "test/VotableERC20.js"
+   }
+  ]
+ }
+}

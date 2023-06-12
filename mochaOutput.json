@@ -1,0 +1,364 @@
+{
+ "stats": {
+  "suites": 5,
+  "tests": 25,
+  "passes": 25,
+  "pending": 0,
+  "failures": 0
+ },
+ "tests": [
+  {
+   "title": "Should set the right properties and owner",
+   "fullTitle": "VotableERC20 Deployment Should set the right properties and owner",
+   "file": "test/VotableERC20.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should allow to buy tokens with fee",
+   "fullTitle": "VotableERC20 Transactions ERC20 Should allow to buy tokens with fee",
+   "file": "test/VotableERC20.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should sell tokens correctly",
+   "fullTitle": "VotableERC20 Transactions ERC20 Should sell tokens correctly",
+   "file": "test/VotableERC20.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should not allow to sell more tokens than you have",
+   "fullTitle": "VotableERC20 Transactions ERC20 Should not allow to sell more tokens than you have",
+   "file": "test/VotableERC20.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should not allow to buy if value of ether send is zero",
+   "fullTitle": "VotableERC20 Transactions ERC20 Should not allow to buy if value of ether send is zero",
+   "file": "test/VotableERC20.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should allow to transfer tokens when you already have them",
+   "fullTitle": "VotableERC20 Transactions ERC20 Should allow to transfer tokens when you already have them",
+   "file": "test/VotableERC20.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should not allow to transfer tokens to zero balance",
+   "fullTitle": "VotableERC20 Transactions ERC20 Should not allow to transfer tokens to zero balance",
+   "file": "test/VotableERC20.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should allow to transferFrom your tokens when you have approved from owner",
+   "fullTitle": "VotableERC20 Transactions ERC20 Should allow to transferFrom your tokens when you have approved from owner",
+   "file": "test/VotableERC20.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should not allow to transferFrom your tokens to zero address",
+   "fullTitle": "VotableERC20 Transactions ERC20 Should not allow to transferFrom your tokens to zero address",
+   "file": "test/VotableERC20.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should allow to set new fee for owner",
+   "fullTitle": "VotableERC20 Transactions ERC20 Should allow to set new fee for owner",
+   "file": "test/VotableERC20.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should not allow to set new fee if you are not the owner",
+   "fullTitle": "VotableERC20 Transactions ERC20 Should not allow to set new fee if you are not the owner",
+   "file": "test/VotableERC20.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should not allow to set fee of whole sum",
+   "fullTitle": "VotableERC20 Transactions ERC20 Should not allow to set fee of whole sum",
+   "file": "test/VotableERC20.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should allow start Vote to anyone who has minimum tokens required",
+   "fullTitle": "VotableERC20 Votable Should allow start Vote to anyone who has minimum tokens required",
+   "file": "test/VotableERC20.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should not allow to start new Vote when current vote is not ended",
+   "fullTitle": "VotableERC20 Votable Should not allow to start new Vote when current vote is not ended",
+   "file": "test/VotableERC20.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should not allow to start vote if address do not have enough tokens",
+   "fullTitle": "VotableERC20 Votable Should not allow to start vote if address do not have enough tokens",
+   "file": "test/VotableERC20.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should not allow to add vote price if address do not have enough tokens for minimal add vote requirence",
+   "fullTitle": "VotableERC20 Votable Should not allow to add vote price if address do not have enough tokens for minimal add vote requirence",
+   "file": "test/VotableERC20.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should allow to vote for some price if address have enough tokens",
+   "fullTitle": "VotableERC20 Votable Should allow to vote for some price if address have enough tokens",
+   "file": "test/VotableERC20.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should not allow to vote for some price if vote is not started",
+   "fullTitle": "VotableERC20 Votable Should not allow to vote for some price if vote is not started",
+   "file": "test/VotableERC20.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should not allow to vote twice",
+   "fullTitle": "VotableERC20 Votable Should not allow to vote twice",
+   "file": "test/VotableERC20.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should allow to end vote if time have been ended",
+   "fullTitle": "VotableERC20 Votable Should allow to end vote if time have been ended",
+   "file": "test/VotableERC20.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should not allow to end vote if time have not been ended",
+   "fullTitle": "VotableERC20 Votable Should not allow to end vote if time have not been ended",
+   "file": "test/VotableERC20.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should remove sell anount of tokens after sell of voter",
+   "fullTitle": "VotableERC20 Votable Should remove sell anount of tokens after sell of voter",
+   "file": "test/VotableERC20.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should add buy anount of tokens after buy of voter",
+   "fullTitle": "VotableERC20 Votable Should add buy anount of tokens after buy of voter",
+   "file": "test/VotableERC20.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should add buy anount of tokens after buy of voter",
+   "fullTitle": "VotableERC20 Votable Should add buy anount of tokens after buy of voter",
+   "file": "test/VotableERC20.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should decrease transfer anount of tokens after transfer of voter",
+   "fullTitle": "VotableERC20 Votable Should decrease transfer anount of tokens after transfer of voter",
+   "file": "test/VotableERC20.js",
+   "currentRetry": 0,
+   "err": {}
+  }
+ ],
+ "failures": [],
+ "passes": [
+  {
+   "title": "Should set the right properties and owner",
+   "fullTitle": "VotableERC20 Deployment Should set the right properties and owner",
+   "file": "test/VotableERC20.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should allow to buy tokens with fee",
+   "fullTitle": "VotableERC20 Transactions ERC20 Should allow to buy tokens with fee",
+   "file": "test/VotableERC20.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should sell tokens correctly",
+   "fullTitle": "VotableERC20 Transactions ERC20 Should sell tokens correctly",
+   "file": "test/VotableERC20.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should not allow to sell more tokens than you have",
+   "fullTitle": "VotableERC20 Transactions ERC20 Should not allow to sell more tokens than you have",
+   "file": "test/VotableERC20.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should not allow to buy if value of ether send is zero",
+   "fullTitle": "VotableERC20 Transactions ERC20 Should not allow to buy if value of ether send is zero",
+   "file": "test/VotableERC20.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should allow to transfer tokens when you already have them",
+   "fullTitle": "VotableERC20 Transactions ERC20 Should allow to transfer tokens when you already have them",
+   "file": "test/VotableERC20.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should not allow to transfer tokens to zero balance",
+   "fullTitle": "VotableERC20 Transactions ERC20 Should not allow to transfer tokens to zero balance",
+   "file": "test/VotableERC20.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should allow to transferFrom your tokens when you have approved from owner",
+   "fullTitle": "VotableERC20 Transactions ERC20 Should allow to transferFrom your tokens when you have approved from owner",
+   "file": "test/VotableERC20.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should not allow to transferFrom your tokens to zero address",
+   "fullTitle": "VotableERC20 Transactions ERC20 Should not allow to transferFrom your tokens to zero address",
+   "file": "test/VotableERC20.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should allow to set new fee for owner",
+   "fullTitle": "VotableERC20 Transactions ERC20 Should allow to set new fee for owner",
+   "file": "test/VotableERC20.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should not allow to set new fee if you are not the owner",
+   "fullTitle": "VotableERC20 Transactions ERC20 Should not allow to set new fee if you are not the owner",
+   "file": "test/VotableERC20.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should not allow to set fee of whole sum",
+   "fullTitle": "VotableERC20 Transactions ERC20 Should not allow to set fee of whole sum",
+   "file": "test/VotableERC20.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should allow start Vote to anyone who has minimum tokens required",
+   "fullTitle": "VotableERC20 Votable Should allow start Vote to anyone who has minimum tokens required",
+   "file": "test/VotableERC20.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should not allow to start new Vote when current vote is not ended",
+   "fullTitle": "VotableERC20 Votable Should not allow to start new Vote when current vote is not ended",
+   "file": "test/VotableERC20.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should not allow to start vote if address do not have enough tokens",
+   "fullTitle": "VotableERC20 Votable Should not allow to start vote if address do not have enough tokens",
+   "file": "test/VotableERC20.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should not allow to add vote price if address do not have enough tokens for minimal add vote requirence",
+   "fullTitle": "VotableERC20 Votable Should not allow to add vote price if address do not have enough tokens for minimal add vote requirence",
+   "file": "test/VotableERC20.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should allow to vote for some price if address have enough tokens",
+   "fullTitle": "VotableERC20 Votable Should allow to vote for some price if address have enough tokens",
+   "file": "test/VotableERC20.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should not allow to vote for some price if vote is not started",
+   "fullTitle": "VotableERC20 Votable Should not allow to vote for some price if vote is not started",
+   "file": "test/VotableERC20.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should not allow to vote twice",
+   "fullTitle": "VotableERC20 Votable Should not allow to vote twice",
+   "file": "test/VotableERC20.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should allow to end vote if time have been ended",
+   "fullTitle": "VotableERC20 Votable Should allow to end vote if time have been ended",
+   "file": "test/VotableERC20.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should not allow to end vote if time have not been ended",
+   "fullTitle": "VotableERC20 Votable Should not allow to end vote if time have not been ended",
+   "file": "test/VotableERC20.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should remove sell anount of tokens after sell of voter",
+   "fullTitle": "VotableERC20 Votable Should remove sell anount of tokens after sell of voter",
+   "file": "test/VotableERC20.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should add buy anount of tokens after buy of voter",
+   "fullTitle": "VotableERC20 Votable Should add buy anount of tokens after buy of voter",
+   "file": "test/VotableERC20.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should add buy anount of tokens after buy of voter",
+   "fullTitle": "VotableERC20 Votable Should add buy anount of tokens after buy of voter",
+   "file": "test/VotableERC20.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should decrease transfer anount of tokens after transfer of voter",
+   "fullTitle": "VotableERC20 Votable Should decrease transfer anount of tokens after transfer of voter",
+   "file": "test/VotableERC20.js",
+   "currentRetry": 0,
+   "err": {}
+  }
+ ]
+}

@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "/Users/ruslanvanin/Projects/RedDuckMilestones/milestone1/contracts/IVotable.sol": {
-      "lastModificationDate": 1685444586863,
-      "contentHash": "3f083f625bac53607b9431976593f187",
+      "lastModificationDate": 1686570274369,
+      "contentHash": "1f195b25d34c2ab50dab17f0987ec244",
       "sourceName": "contracts/IVotable.sol",
       "solcConfig": {
         "version": "0.8.4",
@@ -25,6 +25,9 @@
                 "ast"
               ]
             }
+          },
+          "metadata": {
+            "useLiteralContent": false
           }
         }
       },
@@ -37,8 +40,8 @@
       ]
     },
     "/Users/ruslanvanin/Projects/RedDuckMilestones/milestone1/contracts/VotableERC20.sol": {
-      "lastModificationDate": 1685540834182,
-      "contentHash": "02d5bef25cc34117703a896c935b3d2b",
+      "lastModificationDate": 1686576594475,
+      "contentHash": "b3eaa96d98e9ec0273e6404867598f4c",
       "sourceName": "contracts/VotableERC20.sol",
       "solcConfig": {
         "version": "0.8.4",
@@ -60,12 +63,16 @@
                 "ast"
               ]
             }
+          },
+          "metadata": {
+            "useLiteralContent": false
           }
         }
       },
       "imports": [
         "@openzeppelin/contracts/token/ERC20/IERC20.sol",
-        "./IVotable.sol"
+        "./IVotable.sol",
+        "hardhat/console.sol"
       ],
       "versionPragmas": [
         "^0.8.0"
@@ -75,7 +82,7 @@
       ]
     },
     "/Users/ruslanvanin/Projects/RedDuckMilestones/milestone1/node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol": {
-      "lastModificationDate": 1685015681162,
+      "lastModificationDate": 1686559277364,
       "contentHash": "df36f7051335cd1e748b1b6463b7fdd3",
       "sourceName": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
       "solcConfig": {
@@ -98,6 +105,9 @@
                 "ast"
               ]
             }
+          },
+          "metadata": {
+            "useLiteralContent": false
           }
         }
       },
@@ -109,10 +119,10 @@
         "IERC20"
       ]
     },
-    "/Users/ruslanvanin/Projects/RedDuckMilestones/milestone1/contracts/Attacker/Attacker.sol": {
-      "lastModificationDate": 1685533761444,
-      "contentHash": "fe7933c78e008ac3ed1a6020f763bc27",
-      "sourceName": "contracts/Attacker/Attacker.sol",
+    "/Users/ruslanvanin/Projects/RedDuckMilestones/milestone1/node_modules/hardhat/console.sol": {
+      "lastModificationDate": 1686559275269,
+      "contentHash": "4ff3cd2f6272c9a6516e9ee4f2b967d3",
+      "sourceName": "hardhat/console.sol",
       "solcConfig": {
         "version": "0.8.4",
         "settings": {
@@ -133,53 +143,87 @@
                 "ast"
               ]
             }
-          }
-        }
-      },
-      "imports": [
-        "./IVictim.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "Attacker"
-      ]
-    },
-    "/Users/ruslanvanin/Projects/RedDuckMilestones/milestone1/contracts/Attacker/IVictim.sol": {
-      "lastModificationDate": 1685530365175,
-      "contentHash": "89546eb5867888176ae13a582cef80e2",
-      "sourceName": "contracts/Attacker/IVictim.sol",
-      "solcConfig": {
-        "version": "0.8.4",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
           },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
+          "metadata": {
+            "useLiteralContent": false
           }
         }
       },
       "imports": [],
       "versionPragmas": [
-        "^0.8.0"
+        ">= 0.4.22 <0.9.0"
       ],
       "artifacts": [
-        "IVictim"
+        "console"
       ]
+    },
+    "/Users/ruslanvanin/Projects/RedDuckMilestones/milestone1/contracts/ArrayLib.sol": {
+      "lastModificationDate": 1686559305002,
+      "contentHash": "c7696b30ad83ce3757a22298c39c1414",
+      "sourceName": "contracts/ArrayLib.sol",
+      "solcConfig": {
+        "version": "0.8.4",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": false
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [],
+      "artifacts": []
+    },
+    "/Users/ruslanvanin/Projects/RedDuckMilestones/milestone1/contracts/old.sol": {
+      "lastModificationDate": 1686316197994,
+      "contentHash": "490b83528b56ff4dd228042ae6366d69",
+      "sourceName": "contracts/old.sol",
+      "solcConfig": {
+        "version": "0.8.4",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": false
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [],
+      "artifacts": []
     }
   }
 }

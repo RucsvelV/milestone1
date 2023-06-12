@@ -10,7 +10,5 @@ interface IVotable {
 
     function endVote() external;
 
-    function minTokenAmount() external view returns(uint256);
-
-    function vote(uint256 price) external returns(bool);
+    function vote(uint256 price) external ;
 }

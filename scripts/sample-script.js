@@ -8,12 +8,14 @@ async function main() {
   const initialTokenPrice = 1000000000
   const maxTokenSupply = 1000000
   const timeToVote = 100000
+  const feePercent = 1
 
   await votableERC20.deployed(
     tokenName,
     initialTokenPrice,
     maxTokenSupply,
     timeToVote,
+    feePercent,
   )
 
   console.log('VotableERC20 deployed to:', votableERC20.address)
