@@ -52,7 +52,7 @@ describe('VotableERC20', () => {
     it('Should set the right properties and owner', async () => {
       const { votableERC20, owner } = await deployContract()
 
-      expect(await votableERC20.name()).to.equal(defaultDeployMock.tokenName)
+      expect('name').to.equal(defaultDeployMock.tokenName)
       expect(await votableERC20.symbol()).to.equal(defaultDeployMock.symbol)
       expect(await votableERC20.tokenPrice()).to.equal(
         defaultDeployMock.initialTokenPrice,
@@ -76,7 +76,7 @@ describe('VotableERC20', () => {
       const { votableERC20, address1 } = await deployContract()
 
       await votableERC20.connect(address1).buy({ value: purchaseValue })
-
+      const purchaseValue = ethers.utils.parseEther('1')
       const expectedTokens = purchaseValue
         .sub(purchaseValue.mul(5).div(100))
         .div(await votableERC20.tokenPrice())
@@ -596,6 +596,63 @@ describe('VotableERC20', () => {
       expect(await votableERC20.totalOfPrice(randomProposedPrice)).to.equal(
         address1TokensAfterTransfer,
       )
+    })
+  })
+})
+
+const { expect, use } = require('chai')
+const { Contract } = require('ethers')
+const { deployContract, MockProvider, solidity } = require('ethereum-waffle')
+const { ethers } = require('hardhat')
+const { mine } = require('@nomicfoundation/hardhat-network-helpers')
+
+describe('VotableERC20', () => {
+  const events = {
+    VoteStarted: 'VoteStarted',
+    Voted: 'Voted',
+    PriceChanged: 'PriceChanged',
+    Transfer: 'Transfer',
+    Approval: 'Approval',
+  }
+
+  const defaultDeployMock = {
+    tokenName: 'Voter',
+    symbol: 'vot',
+    initialTokenPrice: 10000,
+    maxTokenSupply: ethers.BigNumber.from('100000000000000000'),
+    timeToVote: 3600,
+    feePercent: 500,
+  }
+
+  // replace with modern tools of hardhat
+  const deployContract = async ({
+    tokenName,
+    symbol,
+    initialTokenPrice,
+    maxTokenSupply,
+    timeToVote,
+    feePercent,
+  } = defaultDeployMock) => {
+    const [owner, address1, address2, address3] = await ethers.getSigners()
+
+    const VotableERC20 = await ethers.getContractFactory('VotableERC20')
+
+    votableERC20 = await VotableERC20.deploy(
+      tokenName,
+      symbol,
+      initialTokenPrice,
+      maxTokenSupply,
+      timeToVote,
+      feePercent,
+    )
+    await votableERC20.deployed()
+
+    return { votableERC20, owner, address1, address2, address3 }
+  }
+
+  describe('', () => {
+    it('Should allow start Vote to anyone who has minimum tokens required', async () => {
+      const { votableERC20, address1 } = await deployContract()
     })
   })
 })
