@@ -85,9 +85,9 @@ contract VotableERC20 is IERC20, IVotable {
 
         if(voterToProposedPrice[msg.sender].proposedPrice != 0 && voterToProposedPrice[msg.sender].voteId == currentVoteId) {
             proposedPriceToTotal[voterToProposedPrice[msg.sender].proposedPrice] += tokensToBuy;
+            _reCalculateLeadingVote();
         }
 
-        _reCalculateLeadingVote();
 
         return true;
     }
@@ -104,8 +104,6 @@ contract VotableERC20 is IERC20, IVotable {
         _burn(msg.sender, tokensToSell);
 
         _updateVoterAfterTransfer(msg.sender, tokensToSell);
-
-        _reCalculateLeadingVote();
 
         payable(msg.sender).transfer(netReturn);
 
@@ -214,6 +212,8 @@ contract VotableERC20 is IERC20, IVotable {
             } else {
                 proposedPriceToTotal[voterToProposedPrice[voter].proposedPrice] -= transferAmount;
             }
+
+            _reCalculateLeadingVote();
         }
     }
 
