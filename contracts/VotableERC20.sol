@@ -12,6 +12,13 @@ contract VotableERC20 is IERC20, IVotable {
         uint256 voteId;
     }
 
+    struct LeadingVote {
+        uint256 votesTotal;
+        uint256 proposedPrice;
+    }
+
+    LeadingVote public leadingVote;
+
     string public name;
     string public symbol;
 
@@ -80,6 +87,8 @@ contract VotableERC20 is IERC20, IVotable {
             proposedPriceToTotal[voterToProposedPrice[msg.sender].proposedPrice] += tokensToBuy;
         }
 
+        _reCalculateLeadingVote();
+
         return true;
     }
 
@@ -95,6 +104,8 @@ contract VotableERC20 is IERC20, IVotable {
         _burn(msg.sender, tokensToSell);
 
         _updateVoterAfterTransfer(msg.sender, tokensToSell);
+
+        _reCalculateLeadingVote();
 
         payable(msg.sender).transfer(netReturn);
 
@@ -119,6 +130,8 @@ contract VotableERC20 is IERC20, IVotable {
         voterToProposedPrice[msg.sender] = VoteProposedPrice(_proposedPrice, currentVoteId);
         proposedPrices.push(_proposedPrice);
 
+        _updateLeadingVote(_proposedPrice);
+
         emit Voted(msg.sender, _proposedPrice);
     }
     // unite both functions 
@@ -129,34 +142,18 @@ contract VotableERC20 is IERC20, IVotable {
         voterToProposedPrice[msg.sender] = VoteProposedPrice(_proposedPrice, currentVoteId);
         proposedPriceToTotal[_proposedPrice] += this.balanceOf(msg.sender);
 
+        _updateLeadingVote(_proposedPrice);
+
         emit Voted(msg.sender, _proposedPrice);
     }
 
     function endVote() external override {
         require(block.timestamp > voteCountdown, "Voting is not over yet");
 
-        uint256 maxVotes = 0;
-        uint256 _totalOfPrice = 0;
-        uint256 winingPrice;
-
-        for(uint256 i = 0; i < proposedPrices.length; i++) {
-            _totalOfPrice = proposedPriceToTotal[proposedPrices[i]];
-
-            if(_totalOfPrice > maxVotes){
-                maxVotes = _totalOfPrice;
-                winingPrice = proposedPrices[i];
-            }
-
-            // proposedPriceToTotal[proposedPrices[i]] = 0; we can replace it with delete proposedPriceToTotal[proposedPrices[i]] and we dont lose anything but cheep up
-            // test it
-            delete proposedPriceToTotal[proposedPrices[i]];
-        }
-        
-        if(maxVotes != 0) {
-            tokenPrice = winingPrice;
-            isVoting = false;
-            emit PriceChanged(tokenPrice);
-        }
+        tokenPrice = leadingVote.proposedPrice;
+        isVoting = false;
+        delete leadingVote;
+        emit PriceChanged(tokenPrice);
     }
 
     function totalSupply() external view override returns (uint256) {
@@ -205,6 +202,8 @@ contract VotableERC20 is IERC20, IVotable {
 
         _updateVoterAfterTransfer(from, amount);
 
+        _reCalculateLeadingVote();
+
         emit Transfer(from, to, amount);
     }
 
@@ -226,5 +225,24 @@ contract VotableERC20 is IERC20, IVotable {
     function _burn(address from, uint256 amount) private {
         balances[from] -= amount;
         totalTokenSupply -= amount;
+    }
+
+    function _updateLeadingVote(uint256 _proposedPrice) private {
+        if(proposedPriceToTotal[_proposedPrice] > leadingVote.votesTotal) {
+            leadingVote.votesTotal = proposedPriceToTotal[_proposedPrice];
+            leadingVote.proposedPrice = _proposedPrice;
+        }
+    }
+
+    function _reCalculateLeadingVote() private {
+        uint256 newLeadingVoteProposedPrice = 0;
+        for(uint256 i = 0; i < proposedPrices.length; i++) {
+            if(proposedPriceToTotal[proposedPrices[i]] > leadingVote.votesTotal){
+                newLeadingVoteProposedPrice = proposedPrices[i];
+            }
+        }
+
+        leadingVote.proposedPrice = newLeadingVoteProposedPrice;
+        leadingVote.votesTotal = proposedPriceToTotal[newLeadingVoteProposedPrice];
     }
 }
