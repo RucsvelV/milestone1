@@ -4,6 +4,27 @@ const { deployContract, MockProvider, solidity } = require('ethereum-waffle')
 const { ethers } = require('hardhat')
 const { mine } = require('@nomicfoundation/hardhat-network-helpers')
 
+const parseArrayResultOfNodes = (nodesArray) => {
+  const nodeObjects = []
+
+  for (let i = 0; i < nodesArray.length; i++) {
+    const node = nodesArray[i]
+    const voteProposedPrice = {
+      proposedPrice: parseInt(node[0][0]._hex),
+      voteId: parseInt(node[0][1]._hex),
+      votesTotal: parseInt(node[0][2]._hex),
+    }
+    const nodeObject = {
+      voteProposedPrice,
+      prev: parseInt(node[1]._hex),
+      next: parseInt(node[2]._hex),
+    }
+    nodeObjects.push(nodeObject)
+  }
+
+  return nodeObjects
+}
+
 describe('VotableERC20', () => {
   const events = {
     VoteStarted: 'VoteStarted',
@@ -596,6 +617,123 @@ describe('VotableERC20', () => {
       expect(await votableERC20.totalOfPrice(randomProposedPrice)).to.equal(
         address1TokensAfterTransfer,
       )
+    })
+
+    it('Test insert node after add vote function', async () => {
+      const randomProposedPrice = 321312321
+      const randomProposedPrice1 = 22222
+      const purchaseValueOfAddress1 = ethers.utils.parseEther('10')
+      const purchaseValueOfAddress2 = ethers.utils.parseEther('1')
+      const { votableERC20, address1, address2 } = await deployContract()
+
+      await votableERC20
+        .connect(address1)
+        .buy({ value: purchaseValueOfAddress1 })
+
+      await votableERC20.connect(address1).startVote()
+      await expect(
+        votableERC20.connect(address1).addVotePrice(randomProposedPrice, 0, 0),
+      )
+        .to.emit(votableERC20, events.Voted)
+        .withArgs(address1.address, randomProposedPrice)
+
+      await votableERC20
+        .connect(address2)
+        .buy({ value: purchaseValueOfAddress2 })
+      await votableERC20
+        .connect(address2)
+        .addVotePrice(randomProposedPrice1, 0, 1)
+
+      const address1Tokens = await votableERC20.balanceOf(address1.address)
+      const address2Tokens = await votableERC20.balanceOf(address2.address)
+
+      const nodesArray = await votableERC20.voteNodes()
+
+      expect(parseArrayResultOfNodes(nodesArray)).to.equal([
+        {
+          next: 0,
+          prev: 2,
+          voteProposedPrice: {
+            proposedPrice: randomProposedPrice,
+            voteId: 2,
+            votesTotal: address1Tokens,
+          },
+        },
+        {
+          next: 1,
+          prev: 0,
+          voteProposedPrice: {
+            proposedPrice: randomProposedPrice1,
+            voteId: 2,
+            votesTotal: address2Tokens,
+          },
+        },
+      ])
+    })
+
+    it('Test insert node and after vote to that node', async () => {
+      const randomProposedPrice = 321312321
+      const randomProposedPrice1 = 22222
+      const purchaseValueOfAddress1 = ethers.utils.parseEther('10')
+      const purchaseValueOfAddress2 = ethers.utils.parseEther('7')
+      const purchaseValueOfAddress3 = ethers.utils.parseEther('5')
+      const {
+        votableERC20,
+        address1,
+        address2,
+        address3,
+      } = await deployContract()
+
+      await votableERC20
+        .connect(address1)
+        .buy({ value: purchaseValueOfAddress1 })
+
+      await votableERC20.connect(address1).startVote()
+      await expect(
+        votableERC20.connect(address1).addVotePrice(randomProposedPrice, 0, 0),
+      )
+        .to.emit(votableERC20, events.Voted)
+        .withArgs(address1.address, randomProposedPrice)
+
+      await votableERC20
+        .connect(address2)
+        .buy({ value: purchaseValueOfAddress2 })
+      await votableERC20
+        .connect(address2)
+        .addVotePrice(randomProposedPrice1, 0, 1)
+
+      await votableERC20
+        .connect(address3)
+        .buy({ value: purchaseValueOfAddress3 })
+      await votableERC20.connect(address3).vote(randomProposedPrice, 1, 2, 0)
+
+      const address1Tokens = await votableERC20.balanceOf(address1.address)
+      const address2Tokens = await votableERC20.balanceOf(address2.address)
+      const address3Tokens = await votableERC20.balanceOf(address3.address)
+      const totalOf1and3 = +address1Tokens + +address3Tokens
+
+      const nodesArray = await votableERC20.voteNodes()
+
+      expect(parseArrayResultOfNodes(nodesArray)).to.equal([
+        {
+          next: 0,
+          prev: 2,
+          voteProposedPrice: {
+            proposedPrice: randomProposedPrice,
+            voteId: 2,
+            votesTotal: totalOf1and3,
+          },
+        },
+        {
+          next: 0,
+          prev: 0,
+          voteProposedPrice: {
+            proposedPrice: 22222,
+            voteId: 2,
+            votesTotal: address2Tokens,
+          },
+        },
+      ])
     })
   })
 })

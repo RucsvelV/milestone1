@@ -7,17 +7,34 @@ import "hardhat/console.sol";
 
 // contact sizer and gas repourter plaguinsz
 contract VotableERC20 is IERC20, IVotable {
-    struct VoteProposedPrice {
-        uint256 proposedPrice;
+    struct VoterData {
+        uint256 proposedPriceIndex;
         uint256 voteId;
     }
 
-    struct LeadingVote {
-        uint256 votesTotal;
+    struct VoteProposedPrice {
         uint256 proposedPrice;
+        uint256 voteId;
+        uint256 votesTotal;
     }
 
-    LeadingVote public leadingVote;
+    struct Node {
+        VoteProposedPrice voteProposedPrice;
+        uint256 prev;
+        uint256 next;
+    }
+
+    // linked list data 
+    struct Data {
+        uint256 head;
+        uint256 tail;     
+        uint256 size;
+        uint256 indexToUse;
+        uint256 currentVoteId;
+        mapping (uint256 => Node) voteNodes; // are you sure you can't use array here? // Is mapping can be limited by size
+    }
+
+    Data public data;
 
     string public name;
     string public symbol;
@@ -34,25 +51,21 @@ contract VotableERC20 is IERC20, IVotable {
     uint256 public minTokenAmountForAddVotePrice;
     uint256 public timeToVote;
     uint256 public voteCountdown;
-    uint256 public currentVoteId = 0;
 
     mapping(address => uint256) private balances;
     mapping(address => mapping(address => uint256)) private allowances;
 
-    mapping(uint256 => uint256) private proposedPriceToTotal;
-    mapping(address => VoteProposedPrice) private voterToProposedPrice;
-    uint256[] public proposedPrices;
-    
-    uint256 public winningPrice;
+    mapping(address => VoterData) private voterToVoterData;
 
     modifier onlyOwner {
         require(msg.sender == owner, "Caller is not owner");
         _;
     }
 
-    modifier isAllowToVote {
+    modifier isAllowToVote(uint256 minTokenAmount) {
         require(block.timestamp <= voteCountdown, "Voting time is over");
-        require(voterToProposedPrice[msg.sender].proposedPrice == 0 && voterToProposedPrice[msg.sender].voteId != currentVoteId, "You already voted!");
+        require(!isVoterOfCurrentVotes(msg.sender), "You already voted!");
+        require(balances[msg.sender] >= minTokenAmount, "Not enough tokens to vote");
         _;
     }
 
@@ -65,6 +78,11 @@ contract VotableERC20 is IERC20, IVotable {
         timeToVote = _timeToVote;
         minTokenAmountForAddVotePrice = (maxTokenSupply * 5) / 10000;
         feePercent = _feePercent;
+        data.head = 0;
+        data.tail = 0;
+        data.size = 0;
+        data.indexToUse = 1;
+        data.currentVoteId = 1;
     }
 
     function setFeePercent(uint256 _newFeePercent) public onlyOwner {
@@ -72,7 +90,26 @@ contract VotableERC20 is IERC20, IVotable {
         feePercent = _newFeePercent;
     }
 
-    function buy() public payable returns (bool) {
+    function voterBuy(uint256 _nodeIndex, uint256 _prevIndex, uint256 _nextIndex) public payable {
+        require(isVoterOfCurrentVotes(msg.sender), "Use buy if you not voted!");
+        require(voterToVoterData[msg.sender].voteId == data.currentVoteId, "You are not voter of currnet vote");
+        require(voterToVoterData[msg.sender].proposedPriceIndex == _nodeIndex, "You are not in this node");
+
+        
+        uint256 boughtTokens = _buy();
+
+        uint256 updatedVotesTotal = data.voteNodes[_nodeIndex].voteProposedPrice.votesTotal + boughtTokens;
+
+        _moveNode(updatedVotesTotal, _nodeIndex, _prevIndex, _nextIndex);
+    }
+
+    function buy() public payable {
+        require(!isVoterOfCurrentVotes(msg.sender), "Use voterBuy if you already voted!");
+
+        _buy();
+    }
+
+    function _buy() private returns(uint256) {
         require(msg.value > 0, "Send some ether to buy tokens.");
 
         uint256 fee = (msg.value * feePercent) / feeDecimals;
@@ -83,16 +120,28 @@ contract VotableERC20 is IERC20, IVotable {
 
         _mint(msg.sender, tokensToBuy);
 
-        if(voterToProposedPrice[msg.sender].proposedPrice != 0 && voterToProposedPrice[msg.sender].voteId == currentVoteId) {
-            proposedPriceToTotal[voterToProposedPrice[msg.sender].proposedPrice] += tokensToBuy;
-            _reCalculateLeadingVote();
-        }
-
-
-        return true;
+        return tokensToBuy;
     }
 
-    function sell(uint256 tokensToSell) public returns (bool) {
+    function voterSell(uint256 _tokensToSell, uint256 _nodeIndex, uint256 _prevIndex, uint256 _nextIndex) public payable {
+        require(isVoterOfCurrentVotes(msg.sender), "Use sell if you not voted!");
+        require(voterToVoterData[msg.sender].voteId == data.currentVoteId, "You are not voter of currnet vote");
+        require(voterToVoterData[msg.sender].proposedPriceIndex == _nodeIndex, "You are not in this node");
+
+        _sell(_tokensToSell);
+
+        uint256 updatedVotesTotal = data.voteNodes[_nodeIndex].voteProposedPrice.votesTotal - _tokensToSell;
+
+        _moveNode(updatedVotesTotal, _nodeIndex, _prevIndex, _nextIndex);
+    }
+
+    function sell(uint256 _tokensToSell) public payable {
+        require(!isVoterOfCurrentVotes(msg.sender), "Use voterSell if you already voted!");
+
+        _sell(_tokensToSell);
+    }
+
+    function _sell(uint256 tokensToSell) private {
         require(this.balanceOf(msg.sender) >= tokensToSell, "Not enough tokens");
 
         uint256 etherToReturn = (tokensToSell * tokenPrice);
@@ -103,11 +152,7 @@ contract VotableERC20 is IERC20, IVotable {
 
         _burn(msg.sender, tokensToSell);
 
-        _updateVoterAfterTransfer(msg.sender, tokensToSell);
-
         payable(msg.sender).transfer(netReturn);
-
-        return true;
     }
 
     function startVote() external override {
@@ -115,32 +160,30 @@ contract VotableERC20 is IERC20, IVotable {
         require(balances[msg.sender] >= minTokenAmountForAddVotePrice, "Not enough tokens for starting a vote!");
         isVoting = true;
         voteCountdown = block.timestamp + timeToVote;
-        currentVoteId++;
+        data.currentVoteId++;
         emit VoteStarted(voteCountdown);
     }
 
 
-    function addVotePrice(uint256 _proposedPrice) external isAllowToVote {
-        require(proposedPriceToTotal[_proposedPrice] == 0, "Someone already added that price, you can vote for that instead");
-        require(balances[msg.sender] >= minTokenAmountForAddVotePrice, "Not enough tokens for add vote price");
+    function addVotePrice(uint256 _proposedPrice, uint256 _prevIndex, uint256 _nextIndex) external isAllowToVote(minTokenAmountForAddVotePrice) {
+        // require(data.voteNodes[proposedPriceToIndex[_proposedPrice]].voteProposedPrice.votesTotal == 0, "Someone already added that price, you can vote for that instead");
+        VoteProposedPrice memory voteProposedPrice = VoteProposedPrice(_proposedPrice, data.currentVoteId, this.balanceOf(msg.sender));
 
-        proposedPriceToTotal[_proposedPrice] += this.balanceOf(msg.sender);
-        voterToProposedPrice[msg.sender] = VoteProposedPrice(_proposedPrice, currentVoteId);
-        proposedPrices.push(_proposedPrice);
+        uint256 addedNodeIndex = _insert(voteProposedPrice, _prevIndex, _nextIndex);
 
-        _updateLeadingVote(_proposedPrice);
+        voterToVoterData[msg.sender] = VoterData(addedNodeIndex, data.currentVoteId);
 
         emit Voted(msg.sender, _proposedPrice);
     }
     // unite both functions 
-    function vote(uint256 _proposedPrice) external override isAllowToVote {
-        require(proposedPriceToTotal[_proposedPrice] != 0, "There is no such price lot yet");
-        require(balances[msg.sender] >= minTokenAmountForVoting, "Not enough tokens for voting");
+    function vote(uint256 _proposedPrice, uint256 _nodeIndex, uint256 _prevIndex, uint256 _nextIndex) external isAllowToVote(minTokenAmountForVoting) {
+        require(data.voteNodes[_nodeIndex].voteProposedPrice.proposedPrice == _proposedPrice && data.voteNodes[_nodeIndex].voteProposedPrice.voteId == data.currentVoteId, "Wrong node index");
 
-        voterToProposedPrice[msg.sender] = VoteProposedPrice(_proposedPrice, currentVoteId);
-        proposedPriceToTotal[_proposedPrice] += this.balanceOf(msg.sender);
+        uint256 updatedVotesTotal = data.voteNodes[_nodeIndex].voteProposedPrice.votesTotal + this.balanceOf(msg.sender);
 
-        _updateLeadingVote(_proposedPrice);
+        _moveNode(updatedVotesTotal, _nodeIndex, _prevIndex, _nextIndex);
+
+        voterToVoterData[msg.sender] = VoterData(_nodeIndex, data.currentVoteId);
 
         emit Voted(msg.sender, _proposedPrice);
     }
@@ -148,9 +191,12 @@ contract VotableERC20 is IERC20, IVotable {
     function endVote() external override {
         require(block.timestamp > voteCountdown, "Voting is not over yet");
 
-        tokenPrice = leadingVote.proposedPrice;
+        tokenPrice = data.voteNodes[data.head].voteProposedPrice.proposedPrice;
+        data.size = 0;
+        data.tail = 0;
+        data.head = 0;
+        data.indexToUse = 1;
         isVoting = false;
-        delete leadingVote;
         emit PriceChanged(tokenPrice);
     }
 
@@ -159,7 +205,9 @@ contract VotableERC20 is IERC20, IVotable {
     }
 
     function totalOfPrice(uint256 _price) external view returns(uint256) {
-        return proposedPriceToTotal[_price];
+        uint256 priceIndex = _findNodeIndex(_price);
+
+        return data.voteNodes[priceIndex].voteProposedPrice.votesTotal;
     }
 
     function balanceOf(address _account) external view override returns(uint256) {
@@ -167,11 +215,13 @@ contract VotableERC20 is IERC20, IVotable {
     }
 
     function transfer(address _to, uint256 _amount) external override returns(bool) {
+        require(!isVoterOfCurrentVotes(msg.sender), "Use voterTransfer if you already voted!");
         _transfer(msg.sender, _to, _amount);
         return true;
     }
 
     function transferFrom(address _from, address _to, uint256 _amount) external override returns(bool) {
+        require(!isVoterOfCurrentVotes(msg.sender), "Use voterTransfer if you already voted!");
         uint256 currentAllowance = allowances[_from][msg.sender];
         require(currentAllowance >= _amount, "Transfer amount exceeds allowance");
         _transfer(_from, _to, _amount);
@@ -190,6 +240,32 @@ contract VotableERC20 is IERC20, IVotable {
         return true;
     }
 
+    function isVoterOfCurrentVotes(address _voter) public view returns(bool) {
+        return voterToVoterData[_voter].voteId == data.currentVoteId;
+    }
+
+    function voteNodes() public view returns(Node[] memory) {
+        Node[] memory _voteNodes = new Node[](data.size);
+
+        for(uint256 i = 1; i <= data.size; i++) {
+            _voteNodes[i - 1] = data.voteNodes[i];
+        }
+
+        return _voteNodes;
+    }
+
+    function _findNodeIndex(uint256 _proposedPrice) private view returns(uint256) {
+        uint256 currentNodeIndex = 0;
+        
+        while(data.voteNodes[currentNodeIndex].next != 0 && data.voteNodes[currentNodeIndex].voteProposedPrice.proposedPrice != _proposedPrice) {
+            currentNodeIndex++;
+        }
+
+        require(data.voteNodes[currentNodeIndex].voteProposedPrice.proposedPrice == _proposedPrice, "Proposed price is not exist in list!");
+
+        return currentNodeIndex;
+    }
+
     function _transfer(address from, address to, uint256 amount) private {
         require(from != address(0), "Cannot transfer from zero address");
         require(to != address(0), "Cannot transfer to zero address");
@@ -198,23 +274,7 @@ contract VotableERC20 is IERC20, IVotable {
         balances[from] -= amount;
         balances[to] += amount;
 
-        _updateVoterAfterTransfer(from, amount);
-
-        _reCalculateLeadingVote();
-
         emit Transfer(from, to, amount);
-    }
-
-    function _updateVoterAfterTransfer(address voter, uint256 transferAmount) private {
-        if(voterToProposedPrice[voter].proposedPrice != 0 && voterToProposedPrice[voter].voteId == currentVoteId) {
-            if(this.balanceOf(voter) < minTokenAmountForVoting) {
-                proposedPriceToTotal[voterToProposedPrice[voter].proposedPrice] -= (transferAmount + this.balanceOf(voter));
-            } else {
-                proposedPriceToTotal[voterToProposedPrice[voter].proposedPrice] -= transferAmount;
-            }
-
-            _reCalculateLeadingVote();
-        }
     }
 
     function _mint(address to, uint256 amount) private {
@@ -227,22 +287,96 @@ contract VotableERC20 is IERC20, IVotable {
         totalTokenSupply -= amount;
     }
 
-    function _updateLeadingVote(uint256 _proposedPrice) private {
-        if(proposedPriceToTotal[_proposedPrice] > leadingVote.votesTotal) {
-            leadingVote.votesTotal = proposedPriceToTotal[_proposedPrice];
-            leadingVote.proposedPrice = _proposedPrice;
+    function _moveNode(uint256 _updatedVotesTotal, uint256 _nodeIndex, uint256 _prevNodeIndex, uint256 _nextNodeIndex) private {
+        Node storage currentNode = data.voteNodes[_nodeIndex];
+
+        require(currentNode.voteProposedPrice.voteId == data.currentVoteId, "Node is not valid");
+        _checkPrevNextNodeIndex(_prevNodeIndex, _nextNodeIndex);
+
+        _updatePrevAndNext(currentNode, _updatedVotesTotal);
+
+        if(data.size == 1 && _nodeIndex == 1) {
+
+        } else if(_prevNodeIndex == 0) {
+            require(data.voteNodes[_nextNodeIndex].voteProposedPrice.votesTotal > _updatedVotesTotal && data.head == _nextNodeIndex, "Next node less than node you trying to add!");
+            data.tail = _nodeIndex;
+            currentNode.next = _nextNodeIndex;
+        } else if (_nextNodeIndex == 0) {
+            require(data.voteNodes[_prevNodeIndex].voteProposedPrice.votesTotal < _updatedVotesTotal && data.tail == _prevNodeIndex, "Next node less than node you trying to add!");
+            data.head = _nodeIndex;
+            currentNode.prev = _prevNodeIndex;
+        } else {
+            require(data.voteNodes[_prevNodeIndex].voteProposedPrice.votesTotal < _updatedVotesTotal, "Next node less than node you trying to add!");
+            require(data.voteNodes[_nextNodeIndex].voteProposedPrice.votesTotal > _updatedVotesTotal, "Next node less than node you trying to add!");
+            currentNode.prev = _prevNodeIndex;
+            currentNode.next = _nextNodeIndex;
+        }
+
+        currentNode.voteProposedPrice.votesTotal = _updatedVotesTotal;
+    }
+
+    function _updatePrevAndNext(Node storage _currentNode, uint256 _updatedVotesTotal) private {
+        if(data.size == 1) {
+
+        } else if(_currentNode.prev == 0 && _updatedVotesTotal > data.voteNodes[_currentNode.next].voteProposedPrice.votesTotal) {
+            data.voteNodes[_currentNode.next].prev = 0; 
+            data.tail = _currentNode.next;
+        } else if(_currentNode.next == 0 && _updatedVotesTotal < data.voteNodes[_currentNode.prev].voteProposedPrice.votesTotal) {
+            data.voteNodes[_currentNode.prev].next = 0; 
+            data.head = _currentNode.prev;
+        } else {
+            data.voteNodes[_currentNode.prev].next = _currentNode.next;
+            data.voteNodes[_currentNode.next].prev = _currentNode.prev;
         }
     }
 
-    function _reCalculateLeadingVote() private {
-        uint256 newLeadingVoteProposedPrice = 0;
-        for(uint256 i = 0; i < proposedPrices.length; i++) {
-            if(proposedPriceToTotal[proposedPrices[i]] > leadingVote.votesTotal){
-                newLeadingVoteProposedPrice = proposedPrices[i];
-            }
+    function _insert(VoteProposedPrice memory _voteProposedPrice, uint256 _prevNodeIndex, uint256 _nextNodeIndex) private returns(uint256) {
+        _checkPrevNextNodeIndex(_prevNodeIndex, _nextNodeIndex);
+
+        Node memory newNode;
+
+        if(data.size == 0 && _prevNodeIndex == 0 && _nextNodeIndex == 0) {
+            data.tail = 1;
+            data.head = 1;
+            newNode = Node(_voteProposedPrice, 0, 0);
+        } else if(_prevNodeIndex == 0) {
+            require(data.voteNodes[_nextNodeIndex].voteProposedPrice.votesTotal > _voteProposedPrice.votesTotal && data.tail == _nextNodeIndex, "Next node less than node you trying to add!");
+            data.voteNodes[_nextNodeIndex].prev = data.indexToUse;
+            data.tail = data.indexToUse;
+            newNode = Node(_voteProposedPrice, _prevNodeIndex, _nextNodeIndex);
+        } else if (_nextNodeIndex == 0) {
+            require(data.voteNodes[_prevNodeIndex].voteProposedPrice.votesTotal < _voteProposedPrice.votesTotal && data.head == _prevNodeIndex, "Next node less than node you trying to add!");
+            data.voteNodes[_prevNodeIndex].next = data.indexToUse;
+            data.head = data.indexToUse;
+            newNode = Node(_voteProposedPrice, _prevNodeIndex, _nextNodeIndex);
+        } else {
+            require(data.voteNodes[_prevNodeIndex].voteProposedPrice.votesTotal < _voteProposedPrice.votesTotal, "Next node less than node you trying to add!");
+            require(data.voteNodes[_nextNodeIndex].voteProposedPrice.votesTotal > _voteProposedPrice.votesTotal, "Next node less than node you trying to add!");
+            newNode = Node(_voteProposedPrice, _prevNodeIndex, _nextNodeIndex);
+            data.voteNodes[_prevNodeIndex].next = data.indexToUse;
+            data.voteNodes[_nextNodeIndex].prev = data.indexToUse;
         }
 
-        leadingVote.proposedPrice = newLeadingVoteProposedPrice;
-        leadingVote.votesTotal = proposedPriceToTotal[newLeadingVoteProposedPrice];
+        data.size++;
+        data.voteNodes[data.indexToUse] = newNode;
+        data.indexToUse++;
+
+        return data.indexToUse - 1;
+    }
+
+    function _checkPrevNextNodeIndex(uint256 _prevNodeIndex, uint256 _nextNodeIndex) view private {
+        require(_prevNodeIndex != _nextNodeIndex || data.size == 0, "Prev and next are equal");
+
+        if(data.size == 0 &&  _prevNodeIndex == 0 && _nextNodeIndex == 0) {
+
+        }else if(_prevNodeIndex != 0 && _nextNodeIndex != 0 && _prevNodeIndex != _nextNodeIndex) {
+            require(data.voteNodes[_prevNodeIndex].next == data.voteNodes[_nextNodeIndex].prev, "Next and prev index not related!");
+        }  else if(_prevNodeIndex != 0 && _nextNodeIndex == 0) {
+            require(data.voteNodes[_prevNodeIndex].prev == 0 && data.tail == _prevNodeIndex, "Cant be head becouse current head higher");
+        } else if(_prevNodeIndex == 0 && _nextNodeIndex != 0) {
+            require(data.voteNodes[_nextNodeIndex].next == 0 && data.head == _nextNodeIndex, "Cant be tail becouse current tail lower");
+        }
     }
 }
+
+// uint256 newIndex, uint256 prevIndex, uint256 nextIndex

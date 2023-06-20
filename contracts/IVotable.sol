@@ -10,5 +10,5 @@ interface IVotable {
 
     function endVote() external;
 
-    function vote(uint256 price) external ;
+    // function vote(uint256 price) external;
 }

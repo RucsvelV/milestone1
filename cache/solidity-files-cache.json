@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "/Users/ruslanvanin/Projects/RedDuckMilestones/milestone1/contracts/IVotable.sol": {
-      "lastModificationDate": 1686570274369,
-      "contentHash": "1f195b25d34c2ab50dab17f0987ec244",
+      "lastModificationDate": 1687165389651,
+      "contentHash": "b0a857c91d25d2a4220d3877a7769c8f",
       "sourceName": "contracts/IVotable.sol",
       "solcConfig": {
         "version": "0.8.4",
@@ -37,8 +37,8 @@
       ]
     },
     "/Users/ruslanvanin/Projects/RedDuckMilestones/milestone1/contracts/VotableERC20.sol": {
-      "lastModificationDate": 1686744029246,
-      "contentHash": "15fdb9b73dc4f68c774e06b67bbd0545",
+      "lastModificationDate": 1687260637250,
+      "contentHash": "83898758d5565a64bf1d7fb100c29a56",
       "sourceName": "contracts/VotableERC20.sol",
       "solcConfig": {
         "version": "0.8.4",
