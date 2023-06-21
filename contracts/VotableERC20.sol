@@ -255,10 +255,10 @@ contract VotableERC20 is IERC20, IVotable {
     }
 
     function _findNodeIndex(uint256 _proposedPrice) private view returns(uint256) {
-        uint256 currentNodeIndex = 0;
+        uint256 currentNodeIndex = 1;
         
         while(data.voteNodes[currentNodeIndex].next != 0 && data.voteNodes[currentNodeIndex].voteProposedPrice.proposedPrice != _proposedPrice) {
-            currentNodeIndex++;
+            currentNodeIndex = data.voteNodes[currentNodeIndex].next;
         }
 
         require(data.voteNodes[currentNodeIndex].voteProposedPrice.proposedPrice == _proposedPrice, "Proposed price is not exist in list!");
@@ -365,11 +365,15 @@ contract VotableERC20 is IERC20, IVotable {
     }
 
     function _checkPrevNextNodeIndex(uint256 _prevNodeIndex, uint256 _nextNodeIndex) view private {
-        require(_prevNodeIndex != _nextNodeIndex || data.size == 0, "Prev and next are equal");
+        require(
+            (_prevNodeIndex != _nextNodeIndex && data.size >= 1) ||
+            (_prevNodeIndex == 0 && _nextNodeIndex == 0 && data.size <= 1),
+            "Prev and next are equal"
+        );
 
         if(data.size == 0 &&  _prevNodeIndex == 0 && _nextNodeIndex == 0) {
-
-        }else if(_prevNodeIndex != 0 && _nextNodeIndex != 0 && _prevNodeIndex != _nextNodeIndex) {
+            return;
+        } else if(_prevNodeIndex != 0 && _nextNodeIndex != 0 && _prevNodeIndex != _nextNodeIndex) {
             require(data.voteNodes[_prevNodeIndex].next == data.voteNodes[_nextNodeIndex].prev, "Next and prev index not related!");
         }  else if(_prevNodeIndex != 0 && _nextNodeIndex == 0) {
             require(data.voteNodes[_prevNodeIndex].prev == 0 && data.tail == _prevNodeIndex, "Cant be head becouse current head higher");

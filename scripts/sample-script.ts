@@ -1,7 +1,7 @@
-const hre = require('hardhat')
+import { ethers } from 'hardhat'
 
 async function main() {
-  const VotableERC20 = await hre.ethers.getContractFactory('VotableERC20')
+  const VotableERC20 = await ethers.getContractFactory('VotableERC20')
   const votableERC20 = await VotableERC20.deploy()
 
   const tokenName = 'Vot'

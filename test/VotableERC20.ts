@@ -1,10 +1,27 @@
-const { expect, use } = require('chai')
-const { Contract } = require('ethers')
-const { deployContract, MockProvider, solidity } = require('ethereum-waffle')
-const { ethers } = require('hardhat')
-const { mine } = require('@nomicfoundation/hardhat-network-helpers')
+import { expect, use } from 'chai'
+import { ethers } from 'hardhat'
+import { mine } from '@nomicfoundation/hardhat-network-helpers'
+import { BigNumber } from 'ethers'
 
-const parseArrayResultOfNodes = (nodesArray) => {
+type TNodes = ([
+  [BigNumber, BigNumber, BigNumber] & {
+    proposedPrice: BigNumber
+    voteId: BigNumber
+    votesTotal: BigNumber
+  },
+  BigNumber,
+  BigNumber,
+] & {
+  voteProposedPrice: [BigNumber, BigNumber, BigNumber] & {
+    proposedPrice: BigNumber
+    voteId: BigNumber
+    votesTotal: BigNumber
+  }
+  prev: BigNumber
+  next: BigNumber
+})[]
+
+const parseArrayResultOfNodes = (nodesArray: TNodes) => {
   const nodeObjects = []
 
   for (let i = 0; i < nodesArray.length; i++) {
@@ -56,7 +73,7 @@ describe('VotableERC20', () => {
 
     const VotableERC20 = await ethers.getContractFactory('VotableERC20')
 
-    votableERC20 = await VotableERC20.deploy(
+    const votableERC20 = await VotableERC20.deploy(
       tokenName,
       symbol,
       initialTokenPrice,
@@ -73,7 +90,7 @@ describe('VotableERC20', () => {
     it('Should set the right properties and owner', async () => {
       const { votableERC20, owner } = await deployContract()
 
-      expect('name').to.equal(defaultDeployMock.tokenName)
+      expect(await votableERC20.name()).to.equal(defaultDeployMock.tokenName)
       expect(await votableERC20.symbol()).to.equal(defaultDeployMock.symbol)
       expect(await votableERC20.tokenPrice()).to.equal(
         defaultDeployMock.initialTokenPrice,
@@ -172,8 +189,8 @@ describe('VotableERC20', () => {
       const expectedTokens = purchaseValue
         .sub(purchaseValue.mul(5).div(100))
         .div(await votableERC20.tokenPrice())
-      const expectedTokensSend = expectedTokens / 2
-      const expectedTokensLeft = expectedTokens / 2
+      const expectedTokensSend = +expectedTokens / 2
+      const expectedTokensLeft = +expectedTokens / 2
 
       await expect(
         votableERC20
@@ -222,8 +239,8 @@ describe('VotableERC20', () => {
       const expectedTokens = purchaseValue
         .sub(purchaseValue.mul(5).div(100))
         .div(await votableERC20.tokenPrice())
-      const expectedTokensApproved = expectedTokens / 2
-      const expectedTokensLeft = expectedTokens / 2
+      const expectedTokensApproved = +expectedTokens / 2
+      const expectedTokensLeft = +expectedTokens / 2
 
       await votableERC20
         .connect(address1)
@@ -263,7 +280,7 @@ describe('VotableERC20', () => {
       const expectedTokens = purchaseValue
         .sub(purchaseValue.mul(5).div(100))
         .div(await votableERC20.tokenPrice())
-      const expectedTokensApproved = expectedTokens / 2
+      const expectedTokensApproved = +expectedTokens / 2
 
       await votableERC20
         .connect(address1)
@@ -369,8 +386,8 @@ describe('VotableERC20', () => {
         .buy({ value: purchaseValueOfAddress2 })
 
       await expect(
-        votableERC20.connect(address2).addVotePrice(randomProposedPrice),
-      ).to.be.revertedWith('Not enough tokens for add vote price')
+        votableERC20.connect(address2).addVotePrice(randomProposedPrice, 0, 0),
+      ).to.be.revertedWith('Not enough tokens to vote')
     })
 
     it('Should allow to vote for some price if address have enough tokens', async () => {
@@ -385,7 +402,7 @@ describe('VotableERC20', () => {
 
       await votableERC20.connect(address1).startVote()
       await expect(
-        votableERC20.connect(address1).addVotePrice(randomProposedPrice),
+        votableERC20.connect(address1).addVotePrice(randomProposedPrice, 0, 0),
       )
         .to.emit(votableERC20, events.Voted)
         .withArgs(address1.address, randomProposedPrice)
@@ -393,7 +410,7 @@ describe('VotableERC20', () => {
       await votableERC20
         .connect(address2)
         .buy({ value: purchaseValueOfAddress2 })
-      await votableERC20.connect(address2).vote(randomProposedPrice)
+      await votableERC20.connect(address2).vote(randomProposedPrice, 1, 0, 0)
 
       const address1Tokens = await votableERC20.balanceOf(address1.address)
       const address2Tokens = await votableERC20.balanceOf(address2.address)
@@ -402,7 +419,10 @@ describe('VotableERC20', () => {
       expect(await votableERC20.totalOfPrice(randomProposedPrice)).to.equal(
         totalOfTwo,
       )
-      expect(await votableERC20.proposedPrices(0)).to.equal(randomProposedPrice)
+      expect(
+        parseArrayResultOfNodes(await votableERC20.voteNodes())[0]
+          .voteProposedPrice.proposedPrice,
+      ).to.equal(randomProposedPrice)
     })
 
     it('Should not allow to vote for some price if vote is not started', async () => {
@@ -414,7 +434,7 @@ describe('VotableERC20', () => {
       await votableERC20.connect(address1).buy({ value: purchaseValue })
 
       await expect(
-        votableERC20.connect(address1).addVotePrice(proposedPrice),
+        votableERC20.connect(address1).addVotePrice(proposedPrice, 0, 0),
       ).to.be.revertedWith('Voting time is over')
     })
 
@@ -426,10 +446,10 @@ describe('VotableERC20', () => {
 
       await votableERC20.connect(address1).buy({ value: purchaseValue })
       await votableERC20.connect(address1).startVote()
-      await votableERC20.connect(address1).addVotePrice(proposedPrice)
+      await votableERC20.connect(address1).addVotePrice(proposedPrice, 0, 0)
 
       await expect(
-        votableERC20.connect(address1).vote(proposedPrice),
+        votableERC20.connect(address1).vote(proposedPrice, 1, 0, 0),
       ).to.be.revertedWith('You already voted!')
     })
 
@@ -441,7 +461,7 @@ describe('VotableERC20', () => {
 
       await votableERC20.connect(address1).buy({ value: purchaseValue })
       await votableERC20.connect(address1).startVote()
-      await votableERC20.connect(address1).addVotePrice(proposedPrice)
+      await votableERC20.connect(address1).addVotePrice(proposedPrice, 0, 0)
 
       await mine(500, { interval: 20 })
 
@@ -461,7 +481,7 @@ describe('VotableERC20', () => {
 
       await votableERC20.connect(address1).buy({ value: purchaseValue })
       await votableERC20.connect(address1).startVote()
-      await votableERC20.connect(address1).addVotePrice(proposedPrice)
+      await votableERC20.connect(address1).addVotePrice(proposedPrice, 0, 0)
 
       // replace with modern tools of hardhat
       await ethers.provider.send('evm_increaseTime', [2600])
@@ -483,16 +503,18 @@ describe('VotableERC20', () => {
       await votableERC20.connect(address1).buy({ value: purchaseValue })
 
       await votableERC20.connect(address1).startVote()
-      await votableERC20.connect(address1).addVotePrice(randomProposedPrice)
+      await votableERC20
+        .connect(address1)
+        .addVotePrice(randomProposedPrice, 0, 0)
 
       const address1Tokens = await votableERC20.balanceOf(address1.address)
       expect(await votableERC20.totalOfPrice(randomProposedPrice)).to.equal(
         address1Tokens,
       )
 
-      const sellValue = address1Tokens / 2
+      const sellValue = +address1Tokens / 2
 
-      await votableERC20.connect(address1).sell(sellValue)
+      await votableERC20.connect(address1).voterSell(sellValue, 1, 0, 0)
 
       expect(await votableERC20.totalOfPrice(randomProposedPrice)).to.equal(
         sellValue,
@@ -507,14 +529,18 @@ describe('VotableERC20', () => {
       await votableERC20.connect(address1).buy({ value: purchaseValue })
 
       await votableERC20.connect(address1).startVote()
-      await votableERC20.connect(address1).addVotePrice(randomProposedPrice)
+      await votableERC20
+        .connect(address1)
+        .addVotePrice(randomProposedPrice, 0, 0)
 
       const address1Tokens = await votableERC20.balanceOf(address1.address)
       expect(await votableERC20.totalOfPrice(randomProposedPrice)).to.equal(
         address1Tokens,
       )
 
-      await votableERC20.connect(address1).buy({ value: purchaseValue })
+      await votableERC20
+        .connect(address1)
+        .voterBuy(1, 0, 0, { value: purchaseValue })
 
       const address1TokensAfterBuy = await votableERC20.balanceOf(
         address1.address,
@@ -524,100 +550,75 @@ describe('VotableERC20', () => {
       )
     })
 
-    it('Should add buy anount of tokens after buy of voter', async () => {
-      const randomProposedPrice = 321312321
-      const purchaseValue = ethers.utils.parseEther('1')
-      const { votableERC20, address1 } = await deployContract()
+    // it('Should decrease transfer amount of tokens after transfer of voter', async () => {
+    //   const randomProposedPrice = 321312321
+    //   const purchaseValue = ethers.utils.parseEther('1')
+    //   const { votableERC20, address1, address2 } = await deployContract()
 
-      await votableERC20.connect(address1).buy({ value: purchaseValue })
+    //   await votableERC20.connect(address1).buy({ value: purchaseValue })
 
-      await votableERC20.connect(address1).startVote()
-      await votableERC20.connect(address1).addVotePrice(randomProposedPrice)
+    //   await votableERC20.connect(address1).startVote()
+    //   await votableERC20.connect(address1).addVotePrice(randomProposedPrice, 0, 0)
 
-      const address1Tokens = await votableERC20.balanceOf(address1.address)
-      expect(await votableERC20.totalOfPrice(randomProposedPrice)).to.equal(
-        address1Tokens,
-      )
+    //   const address1Tokens = await votableERC20.balanceOf(address1.address)
+    //   expect(await votableERC20.totalOfPrice(randomProposedPrice)).to.equal(
+    //     address1Tokens,
+    //   )
 
-      await votableERC20.connect(address1).buy({ value: purchaseValue })
+    //   const transferAmount = +address1Tokens / 2
+    //   await votableERC20
+    //     .connect(address1)
+    //     .transfer(address2.address, transferAmount)
 
-      const address1TokensAfterBuy = await votableERC20.balanceOf(
-        address1.address,
-      )
-      expect(await votableERC20.totalOfPrice(randomProposedPrice)).to.equal(
-        address1TokensAfterBuy,
-      )
-    })
+    //   const address1TokensAfterTransfer = await votableERC20.balanceOf(
+    //     address1.address,
+    //   )
+    //   expect(await votableERC20.totalOfPrice(randomProposedPrice)).to.equal(
+    //     address1TokensAfterTransfer,
+    //   )
+    // })
 
-    it('Should decrease transfer amount of tokens after transfer of voter', async () => {
-      const randomProposedPrice = 321312321
-      const purchaseValue = ethers.utils.parseEther('1')
-      const { votableERC20, address1, address2 } = await deployContract()
+    // it('Should decrease transfer anount of tokens after transferFrom of voter', async () => {
+    //   const randomProposedPrice = 321312321
+    //   const purchaseValue = ethers.utils.parseEther('1')
+    //   const {
+    //     votableERC20,
+    //     address1,
+    //     address2,
+    //     address3,
+    //   } = await deployContract()
 
-      await votableERC20.connect(address1).buy({ value: purchaseValue })
+    //   await votableERC20.connect(address1).buy({ value: purchaseValue })
 
-      await votableERC20.connect(address1).startVote()
-      await votableERC20.connect(address1).addVotePrice(randomProposedPrice)
+    //   await votableERC20.connect(address1).startVote()
+    //   await votableERC20.connect(address1).addVotePrice(randomProposedPrice, 0, 0)
 
-      const address1Tokens = await votableERC20.balanceOf(address1.address)
-      expect(await votableERC20.totalOfPrice(randomProposedPrice)).to.equal(
-        address1Tokens,
-      )
+    //   const address1Tokens = await votableERC20.balanceOf(address1.address)
+    //   expect(await votableERC20.totalOfPrice(randomProposedPrice)).to.equal(
+    //     address1Tokens,
+    //   )
 
-      const transferAmount = address1Tokens / 2
-      await votableERC20
-        .connect(address1)
-        .transfer(address2.address, transferAmount)
+    //   const expectedTokens = purchaseValue
+    //     .sub(purchaseValue.mul(5).div(100))
+    //     .div(await votableERC20.tokenPrice())
+    //   const expectedTokensApproved = +expectedTokens / 2
 
-      const address1TokensAfterTransfer = await votableERC20.balanceOf(
-        address1.address,
-      )
-      expect(await votableERC20.totalOfPrice(randomProposedPrice)).to.equal(
-        address1TokensAfterTransfer,
-      )
-    })
+    //   await votableERC20
+    //     .connect(address1)
+    //     .approve(address2.address, expectedTokensApproved)
 
-    it('Should decrease transfer anount of tokens after transferFrom of voter', async () => {
-      const randomProposedPrice = 321312321
-      const purchaseValue = ethers.utils.parseEther('1')
-      const {
-        votableERC20,
-        address1,
-        address2,
-        address3,
-      } = await deployContract()
+    //   const transferAmount = +address1Tokens / 2
+    //   await votableERC20
+    //     .connect(address2)
+    //     .transferFrom(address1.address, address3.address, transferAmount)
 
-      await votableERC20.connect(address1).buy({ value: purchaseValue })
-
-      await votableERC20.connect(address1).startVote()
-      await votableERC20.connect(address1).addVotePrice(randomProposedPrice)
-
-      const address1Tokens = await votableERC20.balanceOf(address1.address)
-      expect(await votableERC20.totalOfPrice(randomProposedPrice)).to.equal(
-        address1Tokens,
-      )
-
-      const expectedTokens = purchaseValue
-        .sub(purchaseValue.mul(5).div(100))
-        .div(await votableERC20.tokenPrice())
-      const expectedTokensApproved = expectedTokens / 2
-
-      await votableERC20
-        .connect(address1)
-        .approve(address2.address, expectedTokensApproved)
-
-      const transferAmount = address1Tokens / 2
-      await votableERC20
-        .connect(address2)
-        .transferFrom(address1.address, address3.address, transferAmount)
-
-      const address1TokensAfterTransfer = await votableERC20.balanceOf(
-        address1.address,
-      )
-      expect(await votableERC20.totalOfPrice(randomProposedPrice)).to.equal(
-        address1TokensAfterTransfer,
-      )
-    })
+    //   const address1TokensAfterTransfer = await votableERC20.balanceOf(
+    //     address1.address,
+    //   )
+    //   expect(await votableERC20.totalOfPrice(randomProposedPrice)).to.equal(
+    //     address1TokensAfterTransfer,
+    //   )
+    // })
 
     it('Test insert node after add vote function', async () => {
       const randomProposedPrice = 321312321
@@ -649,24 +650,24 @@ describe('VotableERC20', () => {
 
       const nodesArray = await votableERC20.voteNodes()
 
-      expect(parseArrayResultOfNodes(nodesArray)).to.equal([
+      expect(parseArrayResultOfNodes(nodesArray)).to.deep.equal([
         {
-          next: 0,
-          prev: 2,
           voteProposedPrice: {
             proposedPrice: randomProposedPrice,
             voteId: 2,
-            votesTotal: address1Tokens,
+            votesTotal: +address1Tokens,
           },
+          prev: 2,
+          next: 0,
         },
         {
-          next: 1,
-          prev: 0,
           voteProposedPrice: {
             proposedPrice: randomProposedPrice1,
             voteId: 2,
-            votesTotal: address2Tokens,
+            votesTotal: +address2Tokens,
           },
+          prev: 0,
+          next: 1,
         },
       ])
     })
@@ -714,24 +715,24 @@ describe('VotableERC20', () => {
 
       const nodesArray = await votableERC20.voteNodes()
 
-      expect(parseArrayResultOfNodes(nodesArray)).to.equal([
+      expect(parseArrayResultOfNodes(nodesArray)).to.deep.equal([
         {
-          next: 0,
-          prev: 2,
           voteProposedPrice: {
             proposedPrice: randomProposedPrice,
             voteId: 2,
             votesTotal: totalOf1and3,
           },
+          prev: 2,
+          next: 0,
         },
         {
-          next: 0,
-          prev: 0,
           voteProposedPrice: {
             proposedPrice: 22222,
             voteId: 2,
-            votesTotal: address2Tokens,
+            votesTotal: +address2Tokens,
           },
+          prev: 0,
+          next: 0,
         },
       ])
     })

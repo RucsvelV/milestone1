@@ -37,8 +37,8 @@
       ]
     },
     "/Users/ruslanvanin/Projects/RedDuckMilestones/milestone1/contracts/VotableERC20.sol": {
-      "lastModificationDate": 1687260637250,
-      "contentHash": "83898758d5565a64bf1d7fb100c29a56",
+      "lastModificationDate": 1687333817179,
+      "contentHash": "3398fea2ec6e6f7fc43852c8a0752167",
       "sourceName": "contracts/VotableERC20.sol",
       "solcConfig": {
         "version": "0.8.4",
