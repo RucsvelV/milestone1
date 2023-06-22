@@ -37,8 +37,8 @@
       ]
     },
     "/Users/ruslanvanin/Projects/RedDuckMilestones/milestone1/contracts/VotableERC20.sol": {
-      "lastModificationDate": 1687333817179,
-      "contentHash": "3398fea2ec6e6f7fc43852c8a0752167",
+      "lastModificationDate": 1687435828468,
+      "contentHash": "1722a016258bf0462ace904bbbe6c59b",
       "sourceName": "contracts/VotableERC20.sol",
       "solcConfig": {
         "version": "0.8.4",
@@ -76,7 +76,7 @@
       ]
     },
     "/Users/ruslanvanin/Projects/RedDuckMilestones/milestone1/node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol": {
-      "lastModificationDate": 1686559277364,
+      "lastModificationDate": 1687325832190,
       "contentHash": "df36f7051335cd1e748b1b6463b7fdd3",
       "sourceName": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
       "solcConfig": {
@@ -111,7 +111,7 @@
       ]
     },
     "/Users/ruslanvanin/Projects/RedDuckMilestones/milestone1/node_modules/hardhat/console.sol": {
-      "lastModificationDate": 1686559275269,
+      "lastModificationDate": 1687325832347,
       "contentHash": "4ff3cd2f6272c9a6516e9ee4f2b967d3",
       "sourceName": "hardhat/console.sol",
       "solcConfig": {
@@ -144,37 +144,6 @@
       "artifacts": [
         "console"
       ]
-    },
-    "/Users/ruslanvanin/Projects/RedDuckMilestones/milestone1/contracts/old.sol": {
-      "lastModificationDate": 1686316197994,
-      "contentHash": "490b83528b56ff4dd228042ae6366d69",
-      "sourceName": "contracts/old.sol",
-      "solcConfig": {
-        "version": "0.8.4",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [],
-      "artifacts": []
     }
   }
 }
