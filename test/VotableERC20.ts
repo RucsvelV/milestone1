@@ -875,7 +875,7 @@ describe('VotableERC20', () => {
           voteProposedPrice: {
             proposedPrice: randomProposedPrice,
             voteId: 2,
-            votesTotal: +address4Tokens + +address1Tokens,
+            votesTotal: +address4Tokens,
           },
           prev: 0,
           next: 3,

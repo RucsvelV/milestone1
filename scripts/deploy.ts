@@ -29,3 +29,5 @@ main()
     console.error(error)
     process.exit(1)
   })
+
+// npx hardhat verify --network mumbai 0x499d58931aBB34D328031A87caB808ea929C9Fe5 "Voter" "vot" 10000 100000000000000000 3600 500

@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Unlicense
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.9;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "./IVotable.sol";
@@ -8,6 +8,7 @@ import "hardhat/console.sol";
 contract VotableERC20 is IERC20, IVotable {
     event NodeMoved(uint256 nodeIndex, uint256 newPrev, uint256 newNext, uint256 newVotesTotal);
     event NodeInsert(uint256 nodeIndex, uint256 prev, uint256 next, uint256 votePrice, uint256 votesTotal);
+    event PriceOfNodeChanged(uint256 nodeIndex, uint256 newVotesTotal);
 
     struct VoterData {
         uint256 proposedPriceIndex;
@@ -168,7 +169,6 @@ contract VotableERC20 is IERC20, IVotable {
 
 
     function addVotePrice(uint256 _proposedPrice, uint256 _prevIndex, uint256 _nextIndex) external isAllowToVote(minTokenAmountForAddVotePrice) {
-        // require(data.voteNodes[proposedPriceToIndex[_proposedPrice]].voteProposedPrice.votesTotal == 0, "Someone already added that price, you can vote for that instead");
         VoteProposedPrice memory voteProposedPrice = VoteProposedPrice(_proposedPrice, data.currentVoteId, this.balanceOf(msg.sender));
 
         uint256 addedNodeIndex = _insert(voteProposedPrice, _prevIndex, _nextIndex);
@@ -212,7 +212,7 @@ contract VotableERC20 is IERC20, IVotable {
         return data.voteNodes[priceIndex].voteProposedPrice.votesTotal;
     }
 
-    function balanceOf(address _account) external view override returns(uint256) {
+    function balanceOf(address _account) external view returns(uint256) {
         return balances[_account];
     }
 
@@ -244,6 +244,10 @@ contract VotableERC20 is IERC20, IVotable {
 
     function isVoterOfCurrentVotes(address _voter) public view returns(bool) {
         return voterToVoterData[_voter].voteId == data.currentVoteId;
+    }
+
+    function nodeByIndex(uint256 _nodeIndex) public view returns(Node memory) {
+        return data.voteNodes[_nodeIndex];
     }
 
     function voteNodes() public view returns(Node[] memory) {
@@ -294,6 +298,12 @@ contract VotableERC20 is IERC20, IVotable {
         currentNode.voteProposedPrice.votesTotal = _updatedVotesTotal;
 
         require(currentNode.voteProposedPrice.voteId == data.currentVoteId, "Node is not valid");
+
+        if(_isPositionCorrect(currentNode, _prevNodeIndex, _nextNodeIndex)) {
+            emit PriceOfNodeChanged(_nodeIndex, _updatedVotesTotal);
+            return;
+        }
+
         _checkPrevNextNodeIndex(_prevNodeIndex, _nextNodeIndex);
 
         _updatePrevAndNext(currentNode, _nodeIndex);
@@ -301,14 +311,16 @@ contract VotableERC20 is IERC20, IVotable {
         if(data.size == 1 && _nodeIndex == 1) {
             return;
         } else if(_prevNodeIndex == 0) {
-            require(data.voteNodes[_nextNodeIndex].voteProposedPrice.votesTotal > _updatedVotesTotal && data.head == _nextNodeIndex, "Next node less than node you trying to add!");
+            require(data.voteNodes[_nextNodeIndex].voteProposedPrice.votesTotal > _updatedVotesTotal && data.tail == _nextNodeIndex, "Next node less than node you trying to add!");
             data.tail = _nodeIndex;
             currentNode.next = _nextNodeIndex;
+            currentNode.prev = 0;
             data.voteNodes[_nextNodeIndex].prev = _nodeIndex;
         } else if (_nextNodeIndex == 0) {
-            require(data.voteNodes[_prevNodeIndex].voteProposedPrice.votesTotal < _updatedVotesTotal && data.tail == _prevNodeIndex, "Next node less than node you trying to add!");
+            require(data.voteNodes[_prevNodeIndex].voteProposedPrice.votesTotal < _updatedVotesTotal && data.head == _prevNodeIndex, "Next node less than node you trying to add!");
             data.head = _nodeIndex;
             currentNode.prev = _prevNodeIndex;
+            currentNode.next = 0;
             data.voteNodes[_prevNodeIndex].next = _nodeIndex;
         } else {
             require(data.voteNodes[_prevNodeIndex].voteProposedPrice.votesTotal < _updatedVotesTotal, "Next node less than node you trying to add!");
@@ -320,6 +332,25 @@ contract VotableERC20 is IERC20, IVotable {
         }
 
         emit NodeMoved(_nodeIndex, _prevNodeIndex, _nextNodeIndex, _updatedVotesTotal);
+    }
+
+    function _isPositionCorrect(Node storage _currentNode, uint256 _prevNodeIndex, uint256 _nextNodeIndex) private returns(bool) {
+        if(_currentNode.next == _nextNodeIndex && _currentNode.prev == _prevNodeIndex) {
+            if(_currentNode.next == 0 && _currentNode.prev == 0 && data.size <= 1) {
+                return true;
+            } else if(_currentNode.next == 0 && data.voteNodes[_currentNode.prev].voteProposedPrice.votesTotal < _currentNode.voteProposedPrice.votesTotal) {
+                return true;
+            } else if(_currentNode.prev == 0 && data.voteNodes[_currentNode.next].voteProposedPrice.votesTotal > _currentNode.voteProposedPrice.votesTotal) {
+                return true;
+            } else if(
+                data.voteNodes[_currentNode.next].voteProposedPrice.votesTotal > _currentNode.voteProposedPrice.votesTotal &&
+                data.voteNodes[_currentNode.prev].voteProposedPrice.votesTotal < _currentNode.voteProposedPrice.votesTotal
+            ) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     function _updatePrevAndNext(Node storage _currentNode, uint256 _nodeIndex) private {
@@ -394,9 +425,9 @@ contract VotableERC20 is IERC20, IVotable {
             require(data.voteNodes[_prevNodeIndex].next == _nextNodeIndex, "Next and prev index not related!");
             require(data.voteNodes[_nextNodeIndex].prev == _prevNodeIndex, "Next and prev index not related!");
         }  else if(_prevNodeIndex != 0 && _nextNodeIndex == 0) {
-            require(data.voteNodes[_prevNodeIndex].prev == 0 && data.tail == _prevNodeIndex, "Cant be tail becouse current tail lower");
+            require(data.voteNodes[_prevNodeIndex].next == 0 && data.head == _prevNodeIndex, "Cant be tail becouse current tail lower");
         } else if(_prevNodeIndex == 0 && _nextNodeIndex != 0) {
-            require(data.voteNodes[_nextNodeIndex].next == 0 && data.head == _nextNodeIndex, "Cant be head becouse current head higher");
+            require(data.voteNodes[_nextNodeIndex].prev == 0 && data.tail == _nextNodeIndex, "Cant be head becouse current head higher");
         }
     }
 }
